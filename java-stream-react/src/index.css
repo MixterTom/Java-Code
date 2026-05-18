@@ -65,18 +65,28 @@ html, body {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  /* Nunito: hỗ trợ đầy đủ tiếng Việt (Latin Extended), đẹp trên iOS Safari */
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--surface);
   color: var(--text);
   line-height: 1.6;
   padding: 32px;
   transition: background-color 0.3s, color 0.3s;
+  /* Tối ưu render chữ trên iOS Safari và macOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Đảm bảo ký tự tiếng Việt hiển thị đúng kích thước trên iOS */
+  -webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3 {
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 16px;
+  /* Đảm bảo dấu tiếng Việt không bị cắt */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .container {
@@ -311,7 +321,8 @@ h1, h2, h3 {
 }
 
 .btn {
-  font-family: 'JetBrains Mono', monospace;
+  /* JetBrains Mono cho buttons, Nunito làm fallback để tiếng Việt vẫn đẹp */
+  font-family: 'JetBrains Mono', 'Nunito', monospace;
   font-weight: 700;
   font-size: 15px;
   background-color: var(--surface);
