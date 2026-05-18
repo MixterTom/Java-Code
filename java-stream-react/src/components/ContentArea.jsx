@@ -32,6 +32,29 @@ export default function ContentArea({ topic }) {
           </div>
         )}
 
+        {topic.memoryTrick && (
+          <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #F59E0B', marginBottom: '24px' }}>
+            <h3 style={{ marginTop: 0, color: '#F59E0B' }}>Mẹo nhớ nhanh</h3>
+            <p style={{ marginBottom: 0, fontStyle: 'italic' }}>{topic.memoryTrick}</p>
+          </div>
+        )}
+
+        {topic.builtInMethods && (
+          <div className="section">
+            <h3>Các hàm hỗ trợ sẵn (Built-in Methods)</h3>
+            <ul style={{ paddingLeft: '24px', lineHeight: '1.8' }}>
+              {topic.builtInMethods.map((method, index) => (
+                <li key={index} style={{ marginBottom: '8px' }}>
+                  <code style={{ backgroundColor: 'var(--surface)', padding: '2px 6px', borderRadius: '4px', border: '1px solid var(--text)' }}>
+                    {method.split(' - ')[0]}
+                  </code>
+                  {' - ' + method.split(' - ')[1]}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="section">
           <h3>Java Code</h3>
           <MockWindow content={topic.code} />
