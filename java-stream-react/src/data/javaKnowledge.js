@@ -5,6 +5,8 @@ export const javaKnowledge = {
       title: 'String',
       type: 'Immutable',
       description: 'Chuỗi bất biến. Mỗi lần nối chuỗi (concatenation) sẽ tạo ra một object mới, gây lãng phí bộ nhớ và chậm chạp trong các vòng lặp.',
+      interviewSignals: 'Dùng khi dữ liệu chuỗi không cần thay đổi. Các bài toán đối xứng (Palindrome), đếm ký tự (Anagram).',
+      practiceProblems: 'Valid Palindrome, Valid Anagram, Longest Substring.',
       code: `String s = "Hello";\ns += " World"; // Tạo object mới trong bộ nhớ\nSystem.out.println(s.substring(0, 5)); // Cắt chuỗi`,
       output: `Hello`
     },
@@ -13,6 +15,8 @@ export const javaKnowledge = {
       title: 'StringBuilder',
       type: 'Mutable',
       description: 'Chuỗi có thể thay đổi (Mutable). Rất quan trọng trong thuật toán khi cần thao tác nối (append), chèn (insert), xóa chuỗi liên tục với chi phí O(1) amortized.',
+      interviewSignals: 'BẤT CỨ KHI NÀO có vòng lặp nối chuỗi. Các bài toán xây dựng kết quả từ từ, nén chuỗi (String Compression).',
+      practiceProblems: 'String Compression, Decode String.',
       code: `StringBuilder sb = new StringBuilder("Java");\nsb.append(" 17"); // Thêm vào cuối (rất nhanh)\nsb.reverse();     // Đảo ngược chuỗi (in-place)\nSystem.out.println(sb.toString());`,
       output: `71 avaJ`
     },
@@ -21,6 +25,8 @@ export const javaKnowledge = {
       title: 'Arrays (Mảng tĩnh)',
       type: 'Fixed Size',
       description: 'Mảng có kích thước cố định. Cung cấp lớp tiện ích Arrays để thao tác nhanh như sort(), binarySearch(), fill(), copyOf().',
+      interviewSignals: 'Dữ liệu có kích thước biết trước. Rất hay đi kèm thuật toán "Two Pointers" (hai con trỏ) hoặc "Sliding Window" (cửa sổ trượt).',
+      practiceProblems: 'Two Sum II, Container With Most Water, Maximum Subarray.',
       code: `int[] arr = {5, 2, 8, 1};\nArrays.sort(arr); // Sắp xếp mảng nguyên thủy (Dual-Pivot Quicksort O(N log N))\nSystem.out.println(Arrays.toString(arr));`,
       output: `[1, 2, 5, 8]`
     }
@@ -31,6 +37,8 @@ export const javaKnowledge = {
       title: 'ArrayList',
       type: 'Dynamic Array',
       description: 'Mảng động, tự tăng kích thước khi đầy. Truy cập phần tử bằng index cực nhanh (O(1)), nhưng chèn/xóa ở giữa mảng bị chậm (O(N)) do phải dời các phần tử.',
+      interviewSignals: 'Bài toán yêu cầu truy xuất dữ liệu ngẫu nhiên liên tục. Không biết trước kích thước mảng.',
+      practiceProblems: 'Thường dùng làm cấu trúc lưu trữ cơ bản trong đa số các bài.',
       code: `List<Integer> list = new ArrayList<>();\nlist.add(10);\nlist.add(20);\nSystem.out.println(list.get(1)); // Lấy phần tử index 1`,
       output: `20`
     },
@@ -39,6 +47,8 @@ export const javaKnowledge = {
       title: 'LinkedList',
       type: 'Doubly Linked',
       description: 'Danh sách liên kết đôi. Chèn/xóa ở đầu hoặc cuối mảng mất O(1), nhưng truy cập bằng index mất O(N). Thường ít dùng hơn ArrayList.',
+      interviewSignals: 'Bài toán có thao tác thêm/xóa ở đầu hoặc giữa liên tục. Yêu cầu thiết kế LRU Cache.',
+      practiceProblems: 'Reverse Linked List, Merge Two Sorted Lists, LRU Cache.',
       code: `LinkedList<Integer> list = new LinkedList<>();\nlist.addFirst(10); // O(1)\nlist.addLast(20);  // O(1)\nSystem.out.println(list.getFirst());`,
       output: `10`
     },
@@ -47,6 +57,8 @@ export const javaKnowledge = {
       title: 'Stack (ArrayDeque)',
       type: 'LIFO',
       description: 'Ngăn xếp (Vào sau ra trước). Trong thuật toán (ví dụ: DFS, chuỗi ngoặc), trong Java hiện đại luôn được khuyên dùng ArrayDeque thay vì class Stack cũ (vì Stack bị đồng bộ hóa chậm).',
+      interviewSignals: 'Bài toán có tính chất "chờ xử lý ngược". Dấu ngoặc hợp lệ, nhiệt độ hàng ngày (Monotonic Stack), duyệt cây DFS.',
+      practiceProblems: 'Valid Parentheses, Daily Temperatures, Evaluate Reverse Polish Notation.',
       code: `Deque<Integer> stack = new ArrayDeque<>();\nstack.push(1); // Thêm vào đỉnh\nstack.push(2);\nSystem.out.println(stack.pop()); // Lấy ra từ đỉnh`,
       output: `2`
     }
@@ -57,6 +69,8 @@ export const javaKnowledge = {
       title: 'Queue (ArrayDeque)',
       type: 'FIFO',
       description: 'Hàng đợi (Vào trước ra trước). Dùng nhiều trong thuật toán duyệt đồ thị BFS (Breadth-First Search). Dùng offer() để thêm, poll() để lấy ra an toàn.',
+      interviewSignals: 'Bài toán tìm "Đường đi ngắn nhất" trên lưới/đồ thị không trọng số. Duyệt cây theo tầng (Level Order Traversal).',
+      practiceProblems: 'Number of Islands, Binary Tree Level Order Traversal, Rotting Oranges.',
       code: `Queue<Integer> queue = new ArrayDeque<>();\nqueue.offer(1); // Thêm vào cuối\nqueue.offer(2);\nSystem.out.println(queue.poll()); // Lấy ra phần tử đầu`,
       output: `1`
     },
@@ -65,6 +79,8 @@ export const javaKnowledge = {
       title: 'PriorityQueue (Heap)',
       type: 'Min/Max Heap',
       description: 'Hàng đợi ưu tiên. Luôn giữ phần tử nhỏ nhất (hoặc lớn nhất) ở đầu với O(log N) cho mỗi lần chèn/xóa. Rất mạnh cho bài toán Top-K phần tử hoặc thuật toán Dijkstra.',
+      interviewSignals: 'Từ khóa "Top K" (K phần tử lớn nhất/nhỏ nhất), "Largest/Smallest", trộn nhiều danh sách đã sắp xếp.',
+      practiceProblems: 'Kth Largest Element in an Array, Merge k Sorted Lists, Top K Frequent Elements.',
       code: `// Max-Heap (ưu tiên số lớn)\nPriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);\nmaxHeap.offer(10);\nmaxHeap.offer(30);\nmaxHeap.offer(20);\nSystem.out.println(maxHeap.poll()); // Lấy số lớn nhất`,
       output: `30`
     }
@@ -75,6 +91,8 @@ export const javaKnowledge = {
       title: 'HashMap',
       type: 'Hash Table',
       description: 'Lưu trữ Key-Value không duy trì thứ tự. Thao tác chèn/tìm kiếm trung bình là O(1). Dùng rất nhiều làm Frequency Map (đếm tần suất) trong thuật toán.',
+      interviewSignals: 'Bài toán tra cứu cực nhanh O(1). Đếm tần suất xuất hiện, lưu vết phần tử đã duyệt. Các bài toán Two Sum biến thể.',
+      practiceProblems: 'Two Sum, Group Anagrams, Longest Substring Without Repeating Characters.',
       code: `Map<String, Integer> map = new HashMap<>();\nmap.put("Apple", 1);\nmap.put("Apple", map.getOrDefault("Apple", 0) + 1);\nSystem.out.println(map.get("Apple"));`,
       output: `2`
     },
@@ -83,6 +101,8 @@ export const javaKnowledge = {
       title: 'TreeMap',
       type: 'Red-Black Tree',
       description: 'Lưu trữ Key-Value và tự động sắp xếp theo Key (O(log N)). Dùng khi cần lấy các phần tử theo thứ tự tăng/giảm dần, hoặc tìm closest element.',
+      interviewSignals: 'Cần một Map nhưng dữ liệu phải luôn được DUY TRÌ SẮP XẾP. Lấy phần tử cận trên/cận dưới (floorKey/ceilingKey).',
+      practiceProblems: 'My Calendar I, Time Based Key-Value Store.',
       code: `TreeMap<Integer, String> treeMap = new TreeMap<>();\ntreeMap.put(10, "Ten");\ntreeMap.put(5, "Five");\nSystem.out.println(treeMap.firstKey()); // Lấy key nhỏ nhất`,
       output: `5`
     },
@@ -91,6 +111,8 @@ export const javaKnowledge = {
       title: 'HashSet',
       type: 'Hash Table',
       description: 'Tập hợp các phần tử không trùng lặp (O(1)). Đặc biệt hữu ích để loại bỏ phần tử trùng hoặc tạo HashSet làm mảng đánh dấu (visited array) khi duyệt đồ thị.',
+      interviewSignals: 'Bài toán yêu cầu "Duy nhất" (Unique), hoặc kiểm tra sự tồn tại O(1). Phát hiện chu trình.',
+      practiceProblems: 'Contains Duplicate, Longest Consecutive Sequence, Valid Sudoku.',
       code: `Set<Integer> set = new HashSet<>();\nset.add(1);\nset.add(1);\nset.add(2);\nSystem.out.println(set.size()); // Trả về 2 vì trùng lặp bị bỏ qua`,
       output: `2`
     }
@@ -101,6 +123,8 @@ export const javaKnowledge = {
       title: 'filter(Predicate)',
       type: 'Intermediate',
       description: 'Lọc các phần tử thỏa mãn điều kiện. Ở ví dụ này, lọc các số chẵn.',
+      interviewSignals: 'Khi phỏng vấn, dùng Stream thể hiện bạn nắm vững Java 8+. Dùng filter khi cần trích xuất dữ liệu thỏa một điều kiện nhanh chóng thay vì for-if dài dòng.',
+      practiceProblems: 'Các task thao tác với Collection trong công việc thực tế (Crud operations).',
       code: `List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);\nList<Integer> result = list.stream()\n    .filter(n -> n % 2 == 0)\n    .collect(Collectors.toList());`,
       output: `[2, 4, 6]`
     },
@@ -109,6 +133,8 @@ export const javaKnowledge = {
       title: 'map(Function)',
       type: 'Intermediate',
       description: 'Biến đổi mỗi phần tử thành kiểu khác. Ví dụ này nhân đôi mỗi số.',
+      interviewSignals: 'Chuyển đổi DTO (Data Transfer Object) sang Entity và ngược lại trong Spring Boot.',
+      practiceProblems: 'Mapping data layers trong Backend.',
       code: `List<Integer> list = Arrays.asList(1, 2, 3);\nList<Integer> result = list.stream()\n    .map(n -> n * 2)\n    .collect(Collectors.toList());`,
       output: `[2, 4, 6]`
     },
@@ -117,6 +143,8 @@ export const javaKnowledge = {
       title: 'reduce(BinaryOperator)',
       type: 'Terminal',
       description: 'Gộp tất cả phần tử lại thành 1 giá trị duy nhất. Thường dùng tính tổng, tích.',
+      interviewSignals: 'Tính toán tổng hợp (Aggreration), gom nhóm số liệu (Sum, Max, Min) ngắn gọn.',
+      practiceProblems: 'Thống kê dữ liệu, báo cáo (Reporting).',
       code: `List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);\nint sum = list.stream()\n    .reduce(0, Integer::sum);`,
       output: `15`
     }
@@ -127,6 +155,8 @@ export const javaKnowledge = {
       title: 'Thread & Runnable',
       type: 'Core',
       description: 'Tạo một luồng mới bằng cách implement interface Runnable hoặc kế thừa Thread.',
+      interviewSignals: 'Hỏi về lý thuyết Concurrency, deadlock, race condition, thread pool. Cực kì hay hỏi cho dev Senior/Mid.',
+      practiceProblems: 'Print FooBar Alternately, Dining Philosophers (Concurrency problems).',
       code: `Runnable task = () -> {\n    System.out.println("Running in: " + Thread.currentThread().getName());\n};\nnew Thread(task).start();`,
       output: `Running in: Thread-0`
     }

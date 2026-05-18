@@ -18,6 +18,20 @@ export default function ContentArea({ topic }) {
           <p>{topic.description}</p>
         </div>
 
+        {topic.interviewSignals && (
+          <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--primary)', marginBottom: '24px' }}>
+            <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>🎯 Dấu hiệu nhận biết (Khi nào dùng?)</h3>
+            <p style={{ marginBottom: 0 }}>{topic.interviewSignals}</p>
+          </div>
+        )}
+
+        {topic.practiceProblems && (
+          <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #10b981', marginBottom: '24px' }}>
+            <h3 style={{ marginTop: 0, color: '#10b981' }}>🛠 Các dạng bài thực hành</h3>
+            <p style={{ marginBottom: 0, fontWeight: 'bold' }}>{topic.practiceProblems}</p>
+          </div>
+        )}
+
         <div className="section">
           <h3>Java Code</h3>
           <MockWindow content={topic.code} />
