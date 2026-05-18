@@ -4,6 +4,7 @@ import Header from './components/Header';
 import CategoryTabs from './components/CategoryTabs';
 import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const categories = Object.keys(javaKnowledge);
@@ -30,6 +31,12 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  const handleSearchSelect = (category, topic) => {
+    setActiveCategory(category);
+    setActiveTopic(topic);
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="container">
       <Header 
@@ -38,6 +45,8 @@ function App() {
       />
       
       {isMenuOpen && <div className="backdrop" onClick={() => setIsMenuOpen(false)}></div>}
+
+      <SearchBar data={javaKnowledge} onSelect={handleSearchSelect} />
 
       <CategoryTabs 
         categories={categories} 

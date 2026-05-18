@@ -6,6 +6,9 @@
   --danger: #DC2626;
   --surface: #FBFBF9;
   --text: #1C293C;
+  --border-color: #1C293C;
+  --shadow-color: #1C293C;
+  --bg-secondary: #E2E8F0;
   --border-width: 4px;
 }
 
@@ -26,6 +29,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   padding: 32px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1, h2, h3 {
@@ -42,10 +46,11 @@ h1, h2, h3 {
 
 .header {
   background-color: var(--primary);
-  border: var(--border-width) solid var(--text);
+  border: var(--border-width) solid var(--border-color);
   padding: 24px;
-  box-shadow: 8px 8px 0px var(--text);
+  box-shadow: 8px 8px 0px var(--shadow-color);
   margin-bottom: 40px;
+  color: #1C293C; /* Always dark text on primary for contrast */
 }
 
 .layout {
@@ -62,7 +67,7 @@ h1, h2, h3 {
   .header {
     padding: 16px;
     margin-bottom: 24px;
-    box-shadow: 4px 4px 0px var(--text);
+    box-shadow: 4px 4px 0px var(--shadow-color);
   }
 
   .layout {
@@ -72,7 +77,7 @@ h1, h2, h3 {
 
   .card {
     padding: 16px;
-    box-shadow: 4px 4px 0px var(--text);
+    box-shadow: 4px 4px 0px var(--shadow-color);
   }
 
   h1 {
@@ -91,17 +96,17 @@ h1, h2, h3 {
   .btn {
     font-size: 14px;
     padding: 10px 12px;
-    box-shadow: 2px 2px 0px var(--text);
+    box-shadow: 2px 2px 0px var(--shadow-color);
   }
 
   .btn:hover {
     transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px var(--text);
+    box-shadow: 3px 3px 0px var(--shadow-color);
   }
 
   .btn:active {
     transform: translate(2px, 2px);
-    box-shadow: 0px 0px 0px var(--text);
+    box-shadow: 0px 0px 0px var(--shadow-color);
   }
 
   pre {
@@ -109,7 +114,6 @@ h1, h2, h3 {
     padding: 12px;
   }
 
-  /* Nút bấm để mở danh sách bài học trên mobile */
   .mobile-topic-toggle {
     display: block !important;
   }
@@ -124,15 +128,15 @@ h1, h2, h3 {
   .sidebar {
     position: fixed;
     top: 0;
-    right: -100%; /* Ẩn sang bên phải */
+    right: -100%;
     width: 320px;
     max-width: 90vw;
     height: 100vh;
     background-color: var(--surface);
     z-index: 1000;
     padding: 24px;
-    border-left: 4px solid var(--text);
-    box-shadow: -8px 0px 0px var(--text);
+    border-left: 4px solid var(--border-color);
+    box-shadow: -8px 0px 0px var(--shadow-color);
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
   }
@@ -148,7 +152,7 @@ h1, h2, h3 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(28, 41, 60, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 900;
 }
 
@@ -160,11 +164,10 @@ h1, h2, h3 {
   display: none;
 }
 
-/* Custom scrollbar và tối ưu cho iOS (iPhone) */
 .category-tabs,
 .sidebar .button-group {
-  -webkit-overflow-scrolling: touch; /* Cuộn mượt trên iOS */
-  scrollbar-width: none; /* Ẩn scrollbar trên Firefox */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   max-width: 100%;
 }
 
@@ -178,11 +181,10 @@ h1, h2, h3 {
 }
 .category-tabs::-webkit-scrollbar-thumb,
 .sidebar .button-group::-webkit-scrollbar-thumb {
-  background-color: var(--text);
+  background-color: var(--border-color);
   border-radius: 4px;
 }
 
-/* Tối ưu đặc biệt cho màn hình nhỏ (iPhone SE, iPhone Mini...) */
 @media (max-width: 480px) {
   body {
     padding: 16px;
@@ -191,7 +193,7 @@ h1, h2, h3 {
   .header {
     padding: 12px;
     margin-bottom: 16px;
-    box-shadow: 3px 3px 0px var(--text);
+    box-shadow: 3px 3px 0px var(--shadow-color);
     border-width: 3px;
   }
 
@@ -201,7 +203,7 @@ h1, h2, h3 {
 
   .card {
     padding: 12px;
-    box-shadow: 3px 3px 0px var(--text);
+    box-shadow: 3px 3px 0px var(--shadow-color);
     border-width: 3px;
   }
 
@@ -221,13 +223,13 @@ h1, h2, h3 {
   .btn {
     font-size: 13px;
     padding: 8px 10px;
-    box-shadow: 2px 2px 0px var(--text);
+    box-shadow: 2px 2px 0px var(--shadow-color);
     border-width: 2px;
   }
   
   .mock-window {
     border-width: 2px;
-    box-shadow: 3px 3px 0px var(--primary);
+    box-shadow: 3px 3px 0px var(--shadow-color);
   }
 
   pre {
@@ -237,17 +239,26 @@ h1, h2, h3 {
 }
 
 .card {
-  border: var(--border-width) solid var(--text);
-  box-shadow: 8px 8px 0px var(--text);
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: 8px 8px 0px var(--shadow-color);
   padding: 24px;
   height: 100%;
+  background-color: var(--surface);
 }
 
 .bg-surface {
-  background-color: #f1f5f9;
+  background-color: var(--surface);
 }
 
 .bg-white {
+  background-color: var(--surface);
+}
+
+[data-theme="light"] .bg-surface {
+  background-color: #f1f5f9;
+}
+
+[data-theme="light"] .bg-white {
   background-color: #ffffff;
 }
 
@@ -261,24 +272,26 @@ h1, h2, h3 {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
   font-size: 15px;
-  background-color: white;
-  border: 3px solid var(--text);
+  background-color: var(--surface);
+  color: var(--text);
+  border: 3px solid var(--border-color);
   padding: 12px 16px;
   cursor: pointer;
-  box-shadow: 4px 4px 0px var(--text);
+  box-shadow: 4px 4px 0px var(--shadow-color);
   transition: all 0.1s ease-in-out;
   text-align: left;
 }
 
 .btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--text);
+  box-shadow: 6px 6px 0px var(--shadow-color);
   background-color: var(--primary);
+  color: #1C293C; /* Dark text when hovered with primary color */
 }
 
 .btn:active {
   transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px var(--text);
+  box-shadow: 0px 0px 0px var(--shadow-color);
 }
 
 .btn.active {
@@ -291,22 +304,23 @@ h1, h2, h3 {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 24px;
-  border-bottom: 3px solid var(--text);
+  border-bottom: 3px solid var(--border-color);
   padding-bottom: 16px;
 }
 
 .badge {
   background-color: var(--warning);
-  color: white;
+  color: #1C293C;
   font-weight: 800;
   padding: 4px 12px;
-  border: 2px solid var(--text);
-  box-shadow: 2px 2px 0px var(--text);
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0px var(--shadow-color);
   font-size: 14px;
 }
 
 .badge.terminal {
   background-color: var(--success);
+  color: white;
 }
 
 .section {
@@ -314,10 +328,12 @@ h1, h2, h3 {
 }
 
 .mock-window {
-  border: 3px solid var(--text);
-  box-shadow: 4px 4px 0px var(--primary);
-  background-color: var(--text);
+  border: 3px solid var(--border-color);
+  box-shadow: 4px 4px 0px var(--shadow-color);
+  background-color: var(--border-color);
   margin-top: 8px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .mac-header {
@@ -325,14 +341,14 @@ h1, h2, h3 {
   gap: 8px;
   padding: 12px 16px;
   background-color: var(--surface);
-  border-bottom: 3px solid var(--text);
+  border-bottom: 3px solid var(--border-color);
 }
 
 .dot {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  border: 2px solid var(--text);
+  border: 2px solid var(--border-color);
 }
 
 .bg-danger { background-color: var(--danger); }
@@ -340,8 +356,8 @@ h1, h2, h3 {
 .bg-success { background-color: var(--success); }
 
 pre {
-  background-color: var(--text);
-  color: var(--surface);
+  background-color: var(--border-color);
+  color: #E2E8F0;
   font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
   padding: 16px;
   overflow-x: auto;
@@ -352,7 +368,6 @@ pre {
   line-height: 1.5;
 }
 
-/* UX Hint cho cuộn ngang trên di động */
 .scroll-hint {
   display: none;
   font-size: 13px;
@@ -373,30 +388,37 @@ pre {
   }
 }
 
-/* Chế độ Tối (Dark Mode) */
+/* Chế độ Tối (Dark Mode) - Dịu mắt hơn */
 [data-theme="dark"] {
-  --primary: #D97706; /* Màu vàng cam sậm hơn cho dễ nhìn */
-  --secondary: #6350E5;
-  --surface: #111827; /* Nền tối sâu */
-  --text: #F9FAFB; /* Chữ trắng sáng */
+  --primary: #FBBF24; /* Amber 400 - Softer yellow */
+  --secondary: #6366F1; /* Indigo 500 - Softer purple/blue */
+  --success: #34D399; /* Emerald 400 */
+  --warning: #FBBF24; 
+  --danger: #F87171; /* Red 400 */
+  --surface: #1E293B; /* Slate 800 - Dịu mắt, không quá đen */
+  --text: #F1F5F9; /* Slate 100 - Trắng dịu */
+  --border-color: #020617; /* Slate 950 - Đen mờ cho viền */
+  --shadow-color: #020617; /* Slate 950 - Bóng đen cho nổi bật */
+  --bg-secondary: #334155; /* Slate 700 - Dùng cho các box highlight */
 }
 
-[data-theme="dark"] .bg-surface {
-  background-color: #1F2937;
+[data-theme="dark"] .card {
+  background-color: #1E293B;
 }
 
+[data-theme="dark"] .bg-surface,
 [data-theme="dark"] .bg-white {
-  background-color: #374151;
+  background-color: #1E293B; 
 }
 
 [data-theme="dark"] .btn {
-  background-color: #1F2937;
+  background-color: #1E293B;
   color: var(--text);
 }
 
 [data-theme="dark"] .btn:hover {
   background-color: var(--primary);
-  color: #111827; /* Đảm bảo tương phản khi hover */
+  color: #020617; 
 }
 
 [data-theme="dark"] .btn.active {
@@ -405,10 +427,19 @@ pre {
 }
 
 [data-theme="dark"] .mock-window {
-  background-color: #030712;
+  background-color: #0F172A; 
+  border-color: #020617;
+}
+
+[data-theme="dark"] .mac-header {
+  background-color: #1E293B;
 }
 
 [data-theme="dark"] pre {
-  background-color: #030712;
-  color: #E5E7EB;
+  background-color: #0F172A; 
+  color: #E2E8F0; 
+}
+
+[data-theme="dark"] code {
+  color: #F1F5F9;
 }
