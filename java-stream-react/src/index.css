@@ -411,14 +411,22 @@ h1, h2, h3 {
 pre {
   background-color: var(--border-color);
   color: #E2E8F0;
-  font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+  /*
+   * JetBrains Mono: render ASCII code pépé (Java keywords, symbols)
+   * Source Code Pro: monospace CÓ Vietnamese subset → hiển đúng comment tiếng Việt
+   * Consolas / Courier New: system fallback trên Windows/Mac
+   */
+  font-family: 'JetBrains Mono', 'Source Code Pro', 'Consolas', 'Courier New', monospace;
   padding: 16px;
   overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: 15px;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
+  /* Tối ưu render chữ trên iOS Safari */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .scroll-hint {
