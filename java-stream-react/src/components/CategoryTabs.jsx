@@ -1,13 +1,12 @@
 export default function CategoryTabs({ categories, activeCategory, onSelectCategory }) {
   return (
     <div className="category-container">
-      <div className="scroll-hint">Trượt ngang để xem thêm 👉</div>
-      <div className="category-tabs" style={{ display: 'flex', gap: '16px', marginBottom: '32px', overflowX: 'auto', paddingBottom: '8px' }}>
+      <div className="category-tabs" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '32px' }}>
         {categories.map(category => (
           <button
             key={category}
             className={`btn ${activeCategory === category ? 'active' : ''}`}
-            style={{ width: 'auto', marginBottom: 0, whiteSpace: 'nowrap' }}
+            style={{ width: 'auto', marginBottom: 0, padding: '8px 16px', fontSize: '14px' }}
             onClick={() => onSelectCategory(category)}
           >
             {category}

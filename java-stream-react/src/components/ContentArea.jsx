@@ -1,16 +1,49 @@
+import { useState, useEffect } from 'react';
 import MockWindow from './MockWindow';
+import { playTTS, stopTTS } from '../utils/ttsUtils';
 
 export default function ContentArea({ topic }) {
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  // Hủy đọc khi chuyển sang bài khác hoặc tắt component
+  useEffect(() => {
+    stopTTS(setIsSpeaking);
+    return () => stopTTS();
+  }, [topic]);
+
+  const handleSpeak = () => {
+    if (isSpeaking) {
+      stopTTS(setIsSpeaking);
+    } else {
+      playTTS(topic, setIsSpeaking);
+    }
+  };
+
   if (!topic) return null;
   
   return (
     <main className="content">
       <div className="card bg-white">
-        <div className="card-header">
-          <h2>{topic.title}</h2>
-          <span className={`badge ${topic.type === 'Terminal' ? 'terminal' : ''}`}>
-            {topic.type}
-          </span>
+        <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
+          <div>
+            <h2 style={{ marginBottom: '8px' }}>{topic.title}</h2>
+            <span className={`badge ${topic.type === 'Terminal' ? 'terminal' : ''}`}>
+              {topic.type}
+            </span>
+          </div>
+          <button 
+            className="btn" 
+            onClick={handleSpeak}
+            style={{ 
+              backgroundColor: isSpeaking ? 'var(--danger)' : 'var(--primary)', 
+              color: isSpeaking ? 'white' : '#1C293C',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            {isSpeaking ? '⏹ Dừng đọc' : '🔊 Nghe bài học'}
+          </button>
         </div>
         
         <div className="section">

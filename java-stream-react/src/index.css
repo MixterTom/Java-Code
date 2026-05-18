@@ -16,6 +16,47 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--surface);
+}
+
+/* Custom Text Selection Highlight - Matching Neobrutalism Theme */
+::selection {
+  background-color: var(--primary);
+  color: #1C293C; /* Dark text for contrast against light theme primary yellow */
+}
+
+[data-theme="dark"] ::selection {
+  background-color: var(--primary);
+  color: #020617; /* Slate 950 text for contrast against dark theme primary yellow */
+}
+
+/* Custom Scrollbar - Matching Neobrutalism Design System */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-left: 3px solid var(--border-color);
+  border-top: 3px solid var(--border-color); /* For horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border: 3px solid var(--border-color);
+  border-radius: 0px; /* Sharp corners for neobrutalist look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary); /* Interactive transition color */
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--surface);
+  border-top: 3px solid var(--border-color);
+  border-left: 3px solid var(--border-color);
 }
 
 html, body {
@@ -181,8 +222,9 @@ h1, h2, h3 {
 }
 .category-tabs::-webkit-scrollbar-thumb,
 .sidebar .button-group::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 4px;
+  background-color: var(--primary);
+  border: 2px solid var(--border-color);
+  border-radius: 0px;
 }
 
 @media (max-width: 480px) {
