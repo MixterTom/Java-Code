@@ -165,6 +165,17 @@ h1, h2, h3 {
     padding: 12px;
   }
 
+  .search-dropdown {
+    position: absolute !important;
+    top: 100% !important; /* Start right below the search bar */
+    left: 0 !important;
+    right: 0 !important;
+    max-height: 60vh !important; /* Take up max 60% of viewport height */
+    z-index: 2000 !important;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important; /* Darker shadow to indicate overlay */
+  }
+
   .mobile-fab {
     display: flex;
     justify-content: center;

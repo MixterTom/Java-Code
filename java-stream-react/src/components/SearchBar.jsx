@@ -16,14 +16,16 @@ export default function SearchBar({ data, onSelect }) {
     
     Object.keys(data).forEach(category => {
       data[category].forEach(topic => {
-        if (
-          topic.title.toLowerCase().includes(lowerQuery) || 
-          topic.description.toLowerCase().includes(lowerQuery) ||
-          topic.id.toLowerCase().includes(lowerQuery) ||
-          (topic.interviewSignals && topic.interviewSignals.toLowerCase().includes(lowerQuery)) ||
-          (topic.memoryTrick && topic.memoryTrick.toLowerCase().includes(lowerQuery))
-        ) {
-          searchResults.push({ category, topic });
+        if (topic.title.toLowerCase().includes(lowerQuery)) {
+          searchResults.push({ category, topic, matchId: 'section-title' });
+        } else if (topic.description.toLowerCase().includes(lowerQuery)) {
+          searchResults.push({ category, topic, matchId: 'section-description' });
+        } else if (topic.interviewSignals && topic.interviewSignals.toLowerCase().includes(lowerQuery)) {
+          searchResults.push({ category, topic, matchId: 'section-interview-signals' });
+        } else if (topic.memoryTrick && topic.memoryTrick.toLowerCase().includes(lowerQuery)) {
+          searchResults.push({ category, topic, matchId: 'section-memory-trick' });
+        } else if (topic.id.toLowerCase().includes(lowerQuery)) {
+          searchResults.push({ category, topic, matchId: 'section-title' });
         }
       });
     });
@@ -40,8 +42,8 @@ export default function SearchBar({ data, onSelect }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [wrapperRef]);
 
-  const handleSelect = (category, topic) => {
-    onSelect(category, topic);
+  const handleSelect = (category, topic, matchId) => {
+    onSelect(category, topic, matchId);
     setQuery('');
     setIsOpen(false);
   };
@@ -91,7 +93,7 @@ export default function SearchBar({ data, onSelect }) {
       </div>
 
       {isOpen && results.length > 0 && (
-        <div style={{ 
+        <div className="search-dropdown" style={{ 
           position: 'absolute', 
           top: '100%', 
           left: 0, 
@@ -102,12 +104,12 @@ export default function SearchBar({ data, onSelect }) {
           boxShadow: '6px 6px 0px var(--shadow-color)',
           maxHeight: '400px',
           overflowY: 'auto',
-          zIndex: 100
+          zIndex: 1000
         }}>
           {results.map((result, idx) => (
             <div 
               key={`${result.category}-${result.topic.id}-${idx}`}
-              onClick={() => handleSelect(result.category, result.topic)}
+              onClick={() => handleSelect(result.category, result.topic, result.matchId)}
               style={{
                 padding: '16px',
                 borderBottom: idx === results.length - 1 ? 'none' : '2px solid var(--border-color)',
@@ -136,12 +138,13 @@ export default function SearchBar({ data, onSelect }) {
       )}
       
       {isOpen && query.trim() && results.length === 0 && (
-        <div style={{ 
+        <div className="search-dropdown" style={{ 
           position: 'absolute', 
           top: '100%', left: 0, right: 0, marginTop: '8px', 
           padding: '16px', backgroundColor: 'var(--surface)', 
           border: '3px solid var(--border-color)', boxShadow: '6px 6px 0px var(--shadow-color)',
-          color: 'var(--text)'
+          color: 'var(--text)',
+          zIndex: 1000
         }}>
           Không tìm thấy kết quả nào cho "{query}" 😢
         </div>

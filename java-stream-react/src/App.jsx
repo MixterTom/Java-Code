@@ -12,6 +12,7 @@ function App() {
   const [activeTopic, setActiveTopic] = useState(javaKnowledge[categories[0]][0]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [searchMatchId, setSearchMatchId] = useState(null);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -24,16 +25,19 @@ function App() {
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
     setActiveTopic(javaKnowledge[category][0]);
+    setSearchMatchId(null);
   };
 
   const handleTopicChange = (topic) => {
     setActiveTopic(topic);
     setIsMenuOpen(false);
+    setSearchMatchId(null);
   };
 
-  const handleSearchSelect = (category, topic) => {
+  const handleSearchSelect = (category, topic, matchId) => {
     setActiveCategory(category);
     setActiveTopic(topic);
+    setSearchMatchId(matchId);
     setIsMenuOpen(false);
   };
 
@@ -70,6 +74,7 @@ function App() {
         setActiveCategory(categories[catIndex - 1]);
       }
       setActiveTopic(prevTopic);
+      setSearchMatchId(null);
     }
   };
 
@@ -80,6 +85,7 @@ function App() {
         setActiveCategory(categories[catIndex + 1]);
       }
       setActiveTopic(nextTopic);
+      setSearchMatchId(null);
     }
   };
 
@@ -126,6 +132,7 @@ function App() {
           onNext={nextTopic ? handleNext : null}
           prevTopicTitle={prevTopic?.title}
           nextTopicTitle={nextTopic?.title}
+          searchMatchId={searchMatchId}
         />
       </div>
     </div>

@@ -71,13 +71,31 @@ const FormattedText = ({ text }) => {
   );
 };
 
-export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle, nextTopicTitle }) {
+export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle, nextTopicTitle, searchMatchId }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
-  // Auto-scroll to top when topic changes
+  // Auto-scroll to top or matched section when topic changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [topic.id]);
+    if (searchMatchId) {
+      setTimeout(() => {
+        const el = document.getElementById(searchMatchId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Highlight effect
+          const originalBg = el.style.backgroundColor;
+          const originalTransition = el.style.transition;
+          el.style.transition = 'background-color 0.5s ease';
+          el.style.backgroundColor = 'var(--warning)';
+          setTimeout(() => {
+            el.style.backgroundColor = originalBg;
+            setTimeout(() => { el.style.transition = originalTransition; }, 500);
+          }, 1500);
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [topic.id, searchMatchId]);
 
   // Trạng thái mở rộng cho Quizzes, Essays và FAQs
   const [openQuizzes, setOpenQuizzes] = useState({});
@@ -108,7 +126,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
       <div className="card bg-white">
         <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <h2 style={{ marginBottom: '8px' }}>{topic.title}</h2>
+            <h2 id="section-title" style={{ marginBottom: '8px' }}>{topic.title}</h2>
             <span className={`badge ${topic.type === 'Terminal' ? 'terminal' : ''}`}>
               {topic.type}
             </span>
@@ -185,13 +203,13 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
           </div>
         ) : (
           <>
-            <div className="section">
+            <div id="section-description" className="section">
               <h3>Mô tả</h3>
               <p>{topic.description}</p>
             </div>
 
             {topic.interviewSignals && (
-              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--primary)', marginBottom: '24px' }}>
+              <div id="section-interview-signals" className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--primary)', marginBottom: '24px' }}>
                 <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>🎯 Dấu hiệu nhận biết (Khi nào dùng?)</h3>
                 <p style={{ marginBottom: 0 }}>{topic.interviewSignals}</p>
               </div>
@@ -205,7 +223,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
             )}
 
             {topic.memoryTrick && (
-              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--warning)', marginBottom: '24px' }}>
+              <div id="section-memory-trick" className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--warning)', marginBottom: '24px' }}>
                 <h3 style={{ marginTop: 0, color: 'var(--warning)' }}>Mẹo nhớ nhanh</h3>
                 <p style={{ marginBottom: 0, fontStyle: 'italic' }}>{topic.memoryTrick}</p>
               </div>
