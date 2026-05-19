@@ -40,35 +40,48 @@ function App() {
   const currentCategoryTopics = javaKnowledge[activeCategory];
   const currentIndex = currentCategoryTopics.findIndex(t => t.id === activeTopic.id);
 
+  let prevTopic = null;
+  if (currentIndex > 0) {
+    prevTopic = currentCategoryTopics[currentIndex - 1];
+  } else {
+    const catIndex = categories.indexOf(activeCategory);
+    if (catIndex > 0) {
+      const prevCat = categories[catIndex - 1];
+      const prevCatTopics = javaKnowledge[prevCat];
+      prevTopic = prevCatTopics[prevCatTopics.length - 1];
+    }
+  }
+
+  let nextTopic = null;
+  if (currentIndex < currentCategoryTopics.length - 1) {
+    nextTopic = currentCategoryTopics[currentIndex + 1];
+  } else {
+    const catIndex = categories.indexOf(activeCategory);
+    if (catIndex < categories.length - 1) {
+      const nextCat = categories[catIndex + 1];
+      nextTopic = javaKnowledge[nextCat][0];
+    }
+  }
+
   const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setActiveTopic(currentCategoryTopics[currentIndex - 1]);
-    } else {
+    if (prevTopic) {
       const catIndex = categories.indexOf(activeCategory);
-      if (catIndex > 0) {
-        const prevCat = categories[catIndex - 1];
-        setActiveCategory(prevCat);
-        const prevCatTopics = javaKnowledge[prevCat];
-        setActiveTopic(prevCatTopics[prevCatTopics.length - 1]);
+      if (currentIndex === 0 && catIndex > 0) {
+        setActiveCategory(categories[catIndex - 1]);
       }
+      setActiveTopic(prevTopic);
     }
   };
 
   const handleNext = () => {
-    if (currentIndex < currentCategoryTopics.length - 1) {
-      setActiveTopic(currentCategoryTopics[currentIndex + 1]);
-    } else {
+    if (nextTopic) {
       const catIndex = categories.indexOf(activeCategory);
-      if (catIndex < categories.length - 1) {
-        const nextCat = categories[catIndex + 1];
-        setActiveCategory(nextCat);
-        setActiveTopic(javaKnowledge[nextCat][0]);
+      if (currentIndex === currentCategoryTopics.length - 1 && catIndex < categories.length - 1) {
+        setActiveCategory(categories[catIndex + 1]);
       }
+      setActiveTopic(nextTopic);
     }
   };
-
-  const hasPrevious = currentIndex > 0 || categories.indexOf(activeCategory) > 0;
-  const hasNext = currentIndex < currentCategoryTopics.length - 1 || categories.indexOf(activeCategory) < categories.length - 1;
 
   return (
     <div className="container">
@@ -109,8 +122,10 @@ function App() {
         />
         <ContentArea 
           topic={activeTopic} 
-          onPrevious={hasPrevious ? handlePrevious : null}
-          onNext={hasNext ? handleNext : null}
+          onPrevious={prevTopic ? handlePrevious : null}
+          onNext={nextTopic ? handleNext : null}
+          prevTopicTitle={prevTopic?.title}
+          nextTopicTitle={nextTopic?.title}
         />
       </div>
     </div>

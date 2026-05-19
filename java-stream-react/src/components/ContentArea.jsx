@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MockWindow from './MockWindow';
 import { playTTS, stopTTS } from '../utils/ttsUtils';
 
@@ -71,8 +71,13 @@ const FormattedText = ({ text }) => {
   );
 };
 
-export default function ContentArea({ topic, onPrevious, onNext }) {
+export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle, nextTopicTitle }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
+
+  // Auto-scroll to top when topic changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [topic.id]);
 
   // Trạng thái mở rộng cho Quizzes, Essays và FAQs
   const [openQuizzes, setOpenQuizzes] = useState({});
@@ -603,21 +608,23 @@ export default function ContentArea({ topic, onPrevious, onNext }) {
             <button 
               className="btn" 
               onClick={onPrevious}
-              style={{ flex: 1, backgroundColor: 'var(--surface)', fontSize: '15px' }}
+              style={{ flex: 1, minWidth: 0, backgroundColor: 'var(--surface)', fontSize: '15px', textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+              title={prevTopicTitle}
             >
-              ⬅️ Bài trước
+              {prevTopicTitle}
             </button>
-          ) : <div style={{ flex: 1 }}></div>}
+          ) : <div style={{ flex: 1, minWidth: 0 }}></div>}
           
           {onNext ? (
             <button 
               className="btn" 
               onClick={onNext}
-              style={{ flex: 1, backgroundColor: 'var(--primary)', color: '#1C293C', fontSize: '15px', textAlign: 'right' }}
+              style={{ flex: 1, minWidth: 0, backgroundColor: 'var(--primary)', color: '#1C293C', fontSize: '15px', textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+              title={nextTopicTitle}
             >
-              Bài tiếp theo ➡️
+              {nextTopicTitle}
             </button>
-          ) : <div style={{ flex: 1 }}></div>}
+          ) : <div style={{ flex: 1, minWidth: 0 }}></div>}
         </div>
 
       </div>
