@@ -165,8 +165,26 @@ h1, h2, h3 {
     padding: 12px;
   }
 
-  .mobile-topic-toggle {
-    display: block !important;
+  .mobile-fab {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 320px;
+    z-index: 900;
+    background-color: var(--primary);
+    color: #1C293C;
+    border-radius: 50px;
+    box-shadow: 4px 4px 0px var(--shadow-color);
+    animation: bounce-pulse 2s infinite;
+  }
+  
+  [data-theme="dark"] .mobile-fab {
+    color: #020617; /* Slate 950 */
+    box-shadow: 4px 4px 0px #020617;
   }
 
   .mobile-sidebar-header {
@@ -218,8 +236,19 @@ h1, h2, h3 {
   display: none;
 }
 
-.mobile-topic-toggle {
-  display: none;
+.mobile-fab {
+  display: none; /* Hidden by default on desktop */
+}
+
+@keyframes bounce-pulse {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 4px 4px 0px var(--shadow-color);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+    box-shadow: 6px 9px 0px var(--shadow-color);
+  }
 }
 
 .category-tabs,

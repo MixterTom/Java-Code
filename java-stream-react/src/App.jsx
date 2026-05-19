@@ -5,7 +5,6 @@ import CategoryTabs from './components/CategoryTabs';
 import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
 import SearchBar from './components/SearchBar';
-import GuideModal from './components/GuideModal';
 
 function App() {
   const categories = Object.keys(javaKnowledge);
@@ -13,14 +12,6 @@ function App() {
   const [activeTopic, setActiveTopic] = useState(javaKnowledge[categories[0]][0]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-
-  useEffect(() => {
-    const hasSeenGuide = localStorage.getItem('java_learning_guide_seen');
-    if (!hasSeenGuide) {
-      setIsGuideOpen(true);
-    }
-  }, []);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -48,18 +39,9 @@ function App() {
 
   return (
     <div className="container">
-      <GuideModal 
-        isOpen={isGuideOpen} 
-        onClose={() => {
-          localStorage.setItem('java_learning_guide_seen', 'true');
-          setIsGuideOpen(false);
-        }} 
-      />
-
       <Header 
         toggleTheme={() => setIsDarkMode(!isDarkMode)}
         isDarkMode={isDarkMode}
-        openGuide={() => setIsGuideOpen(true)}
       />
       
       {isMenuOpen && <div className="backdrop" onClick={() => setIsMenuOpen(false)}></div>}
@@ -72,19 +54,20 @@ function App() {
         onSelectCategory={handleCategoryChange} 
       />
 
-      <div className="mobile-topic-toggle">
-        <button 
-          className="btn" 
-          style={{ width: '100%', marginBottom: '24px', backgroundColor: 'var(--primary)', color: '#1C293C' }} 
-          onClick={() => setIsMenuOpen(true)}
-        >
-          📂 Danh sách bài học 👉 ({activeTopic.title})
-        </button>
-      </div>
+      {/* Prominent Floating Action Button for Mobile */}
+      <button 
+        className="mobile-fab btn" 
+        onClick={() => setIsMenuOpen(true)}
+        aria-label="Mở Menu Danh Mục và Bài Học"
+      >
+        <span>🚀</span> Đổi Danh Mục & Bài Học
+      </button>
 
       <div className="layout">
         <Sidebar 
+          categories={categories}
           activeCategory={activeCategory}
+          onSelectCategory={handleCategoryChange}
           topics={javaKnowledge[activeCategory]}
           activeTopic={activeTopic}
           onSelectTopic={handleTopicChange}
