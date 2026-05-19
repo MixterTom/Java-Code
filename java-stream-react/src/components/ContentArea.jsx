@@ -71,6 +71,59 @@ const FormattedText = ({ text }) => {
   );
 };
 
+const MarkdownBlock = ({ text }) => {
+  if (!text) return null;
+  
+  // Split by code blocks first
+  const blockRegex = /(```[\s\S]*?```)/g;
+  const blocks = text.split(blockRegex);
+  
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+      {blocks.map((block, idx) => {
+        if (block.startsWith('```') && block.endsWith('```')) {
+          const content = block.slice(3, -3).replace(/^[a-z]+\n/, '').trim();
+          return (
+            <div key={idx} style={{ marginTop: '12px', marginBottom: '12px' }}>
+              <MockWindow content={content} />
+            </div>
+          );
+        }
+        
+        // Render regular text with lists and FormattedText
+        const lines = block.split('\n');
+        return (
+          <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {lines.map((line, lineIdx) => {
+              if (line.trim().startsWith('- ')) {
+                return (
+                  <div key={lineIdx} style={{ display: 'flex', gap: '8px', marginLeft: '12px', marginTop: '4px' }}>
+                    <span>•</span>
+                    <span><FormattedText text={line.trim().substring(2)} /></span>
+                  </div>
+                );
+              }
+              if (line.trim().match(/^\d+\.\s/)) {
+                 return (
+                  <div key={lineIdx} style={{ display: 'flex', gap: '8px', marginLeft: '12px', marginTop: '4px' }}>
+                    <span>{line.trim().match(/^\d+\./)[0]}</span>
+                    <span><FormattedText text={line.trim().replace(/^\d+\.\s/, '')} /></span>
+                  </div>
+                );
+              }
+              return (
+                <div key={lineIdx} style={{ minHeight: line.trim() === '' ? '12px' : 'auto', marginTop: line.trim() === '' ? '0' : '4px' }}>
+                  <FormattedText text={line} />
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle, nextTopicTitle, searchMatchId }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -457,7 +510,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
                           color: 'var(--success)',
                           fontWeight: '500'
                         }}>
-                          {quiz.a}
+                          <MarkdownBlock text={quiz.a} />
                         </div>
                       )}
                     </div>
@@ -516,7 +569,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
                             color: 'var(--warning)',
                             fontWeight: '500'
                           }}>
-                            <strong>📌 Gợi ý phân tích:</strong> {essay.hint}
+                            <strong>📌 Gợi ý phân tích:</strong> <MarkdownBlock text={essay.a || essay.hint} />
                           </div>
                         )}
                       </div>
@@ -533,7 +586,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
         {/* =================================================================== */}
         {topic.faqs ? (
           <div className="section">
-            <h3 style={{ marginBottom: '16px' }}>❓ Hỏi - Đáp Phỏng Vấn OOP (Click để mở rộng câu trả lời)</h3>
+            <h3 style={{ marginBottom: '16px' }}>❓ Hỏi - Đáp Phỏng Vấn Thường Gặp (Click để mở rộng câu trả lời)</h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
               {topic.faqs.map((faq, index) => {
@@ -583,7 +636,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
                         color: 'var(--text)',
                         fontSize: '0.98rem'
                       }}>
-                        {faq.a}
+                        <MarkdownBlock text={faq.a} />
                       </div>
                     )}
                   </div>
