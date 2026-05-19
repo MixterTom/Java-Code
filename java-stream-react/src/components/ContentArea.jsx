@@ -71,7 +71,7 @@ const FormattedText = ({ text }) => {
   );
 };
 
-export default function ContentArea({ topic }) {
+export default function ContentArea({ topic, onPrevious, onNext }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Trạng thái mở rộng cho Quizzes, Essays và FAQs
@@ -586,6 +586,40 @@ export default function ContentArea({ topic }) {
             <MockWindow content={topic.output} />
           </div>
         )}
+
+        {/* =================================================================== */}
+        {/* ĐIỀU HƯỚNG BÀI HỌC TRƯỚC / SAU */}
+        {/* =================================================================== */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          marginTop: '40px', 
+          paddingTop: '24px', 
+          borderTop: '3px solid var(--border-color)',
+          gap: '16px'
+        }}>
+          {onPrevious ? (
+            <button 
+              className="btn" 
+              onClick={onPrevious}
+              style={{ flex: 1, backgroundColor: 'var(--surface)', fontSize: '15px' }}
+            >
+              ⬅️ Bài trước
+            </button>
+          ) : <div style={{ flex: 1 }}></div>}
+          
+          {onNext ? (
+            <button 
+              className="btn" 
+              onClick={onNext}
+              style={{ flex: 1, backgroundColor: 'var(--primary)', color: '#1C293C', fontSize: '15px', textAlign: 'right' }}
+            >
+              Bài tiếp theo ➡️
+            </button>
+          ) : <div style={{ flex: 1 }}></div>}
+        </div>
+
       </div>
     </main>
   );

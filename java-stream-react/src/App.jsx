@@ -37,6 +37,39 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  const currentCategoryTopics = javaKnowledge[activeCategory];
+  const currentIndex = currentCategoryTopics.findIndex(t => t.id === activeTopic.id);
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setActiveTopic(currentCategoryTopics[currentIndex - 1]);
+    } else {
+      const catIndex = categories.indexOf(activeCategory);
+      if (catIndex > 0) {
+        const prevCat = categories[catIndex - 1];
+        setActiveCategory(prevCat);
+        const prevCatTopics = javaKnowledge[prevCat];
+        setActiveTopic(prevCatTopics[prevCatTopics.length - 1]);
+      }
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < currentCategoryTopics.length - 1) {
+      setActiveTopic(currentCategoryTopics[currentIndex + 1]);
+    } else {
+      const catIndex = categories.indexOf(activeCategory);
+      if (catIndex < categories.length - 1) {
+        const nextCat = categories[catIndex + 1];
+        setActiveCategory(nextCat);
+        setActiveTopic(javaKnowledge[nextCat][0]);
+      }
+    }
+  };
+
+  const hasPrevious = currentIndex > 0 || categories.indexOf(activeCategory) > 0;
+  const hasNext = currentIndex < currentCategoryTopics.length - 1 || categories.indexOf(activeCategory) < categories.length - 1;
+
   return (
     <div className="container">
       <Header 
@@ -74,7 +107,11 @@ function App() {
           isOpen={isMenuOpen}
           closeMenu={() => setIsMenuOpen(false)}
         />
-        <ContentArea topic={activeTopic} />
+        <ContentArea 
+          topic={activeTopic} 
+          onPrevious={hasPrevious ? handlePrevious : null}
+          onNext={hasNext ? handleNext : null}
+        />
       </div>
     </div>
   );

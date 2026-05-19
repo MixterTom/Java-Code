@@ -236,8 +236,10 @@ h1, h2, h3 {
   display: none;
 }
 
-.mobile-fab {
-  display: none; /* Hidden by default on desktop */
+@media (min-width: 769px) {
+  .mobile-fab {
+    display: none; /* Hidden by default on desktop */
+  }
 }
 
 @keyframes bounce-pulse {
