@@ -11,7 +11,7 @@ export default function Sidebar({ categories, activeCategory, onSelectCategory, 
         <button className="btn" onClick={closeMenu} style={{ padding: '4px 8px', fontSize: '13px' }}>Đóng ✕</button>
       </div>
 
-      <div className="card bg-surface" style={{ marginBottom: '24px' }}>
+      <div className="card bg-surface mobile-only" style={{ marginBottom: '24px' }}>
         <h2 style={{ fontSize: '18px', color: 'var(--primary)', textShadow: '1px 1px 0px var(--text)' }}>
           📚 Danh mục
         </h2>

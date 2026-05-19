@@ -112,7 +112,7 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
   body {
-    padding: 16px;
+    padding: 16px 16px 100px 16px; /* Extra bottom padding to clear the FAB */
   }
 
   .header {
@@ -237,8 +237,9 @@ h1, h2, h3 {
 }
 
 @media (min-width: 769px) {
-  .mobile-fab {
-    display: none; /* Hidden by default on desktop */
+  .mobile-fab,
+  .mobile-only {
+    display: none !important; /* Hidden by default on desktop */
   }
 }
 
@@ -277,7 +278,7 @@ h1, h2, h3 {
 
 @media (max-width: 480px) {
   body {
-    padding: 16px;
+    padding: 16px 16px 100px 16px; /* Extra bottom padding to clear the FAB */
   }
 
   .header {
