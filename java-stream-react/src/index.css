@@ -182,14 +182,21 @@ h1, h2, h3 {
     right: -100%;
     width: 320px;
     max-width: 90vw;
-    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height */
+    max-height: 100vh;
     background-color: var(--surface);
     z-index: 1000;
-    padding: 24px;
+    padding: 24px 24px 80px 24px; /* Extra bottom padding for mobile browser nav bar */
     border-left: 4px solid var(--border-color);
     box-shadow: -8px 0px 0px var(--shadow-color);
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  }
+
+  .sidebar .card {
+    height: auto; /* Prevent card from stretching infinitely inside the scrolling sidebar */
+    margin-bottom: 24px;
   }
 
   .sidebar.open {
@@ -523,4 +530,15 @@ pre {
 /* Comparison Item Dark Mode */
 [data-theme="dark"] .comparison-item {
   background-color: var(--bg-secondary) !important;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -5,6 +5,7 @@ import CategoryTabs from './components/CategoryTabs';
 import Sidebar from './components/Sidebar';
 import ContentArea from './components/ContentArea';
 import SearchBar from './components/SearchBar';
+import GuideModal from './components/GuideModal';
 
 function App() {
   const categories = Object.keys(javaKnowledge);
@@ -12,6 +13,14 @@ function App() {
   const [activeTopic, setActiveTopic] = useState(javaKnowledge[categories[0]][0]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
+  useEffect(() => {
+    const hasSeenGuide = localStorage.getItem('java_learning_guide_seen');
+    if (!hasSeenGuide) {
+      setIsGuideOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -39,9 +48,18 @@ function App() {
 
   return (
     <div className="container">
+      <GuideModal 
+        isOpen={isGuideOpen} 
+        onClose={() => {
+          localStorage.setItem('java_learning_guide_seen', 'true');
+          setIsGuideOpen(false);
+        }} 
+      />
+
       <Header 
         toggleTheme={() => setIsDarkMode(!isDarkMode)}
         isDarkMode={isDarkMode}
+        openGuide={() => setIsGuideOpen(true)}
       />
       
       {isMenuOpen && <div className="backdrop" onClick={() => setIsMenuOpen(false)}></div>}
