@@ -504,3 +504,23 @@ pre {
 [data-theme="dark"] code {
   color: #F1F5F9;
 }
+
+/* Quiz and Essay Open States */
+.quiz-open {
+  background-color: #f0fdf4 !important;
+}
+[data-theme="dark"] .quiz-open {
+  background-color: #064e3b !important;
+}
+
+.essay-open {
+  background-color: #fffbeb !important;
+}
+[data-theme="dark"] .essay-open {
+  background-color: #422006 !important;
+}
+
+/* Comparison Item Dark Mode */
+[data-theme="dark"] .comparison-item {
+  background-color: var(--bg-secondary) !important;
+}

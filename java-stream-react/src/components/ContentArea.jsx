@@ -19,15 +19,15 @@ const FormattedText = ({ text }) => {
           if (inner.startsWith('O(')) {
             return (
               <span key={index} style={{ 
-                color: '#ef4444', 
+                color: 'var(--danger)', 
                 fontWeight: 'bold', 
-                backgroundColor: '#fee2e2', 
+                backgroundColor: 'var(--bg-secondary)', 
                 padding: '2px 6px', 
                 borderRadius: '4px', 
                 fontSize: '0.85em', 
                 fontFamily: 'monospace',
                 margin: '0 2px',
-                border: '1px solid #fca5a5'
+                border: '1px solid var(--danger)'
               }}>
                 {inner}
               </span>
@@ -35,12 +35,12 @@ const FormattedText = ({ text }) => {
           }
           return (
             <code key={index} style={{ 
-              backgroundColor: '#f1f5f9', 
+              backgroundColor: 'var(--bg-secondary)', 
               padding: '2px 6px', 
               borderRadius: '4px', 
-              border: '1px solid #cbd5e1', 
+              border: '1px solid var(--border-color)', 
               fontSize: '0.9em', 
-              color: '#0f172a', 
+              color: 'var(--text)', 
               fontFamily: 'monospace',
               margin: '0 2px'
             }}>
@@ -51,15 +51,15 @@ const FormattedText = ({ text }) => {
         if (part.startsWith('O(') && part.endsWith(')')) {
           return (
             <span key={index} style={{ 
-              color: '#ef4444', 
+              color: 'var(--danger)', 
               fontWeight: 'bold', 
-              backgroundColor: '#fee2e2', 
+              backgroundColor: 'var(--bg-secondary)', 
               padding: '2px 6px', 
               borderRadius: '4px', 
               fontSize: '0.85em', 
               fontFamily: 'monospace',
               margin: '0 2px',
-              border: '1px solid #fca5a5'
+              border: '1px solid var(--danger)'
             }}>
               {part}
             </span>
@@ -113,7 +113,7 @@ export default function ContentArea({ topic }) {
             onClick={handleSpeak}
             style={{ 
               backgroundColor: isSpeaking ? 'var(--danger)' : 'var(--primary)', 
-              color: isSpeaking ? 'white' : '#1C293C',
+              color: isSpeaking ? 'white' : 'var(--text)',
               display: 'flex',
               alignItems: 'center',
               gap: '8px'
@@ -126,8 +126,7 @@ export default function ContentArea({ topic }) {
         {topic.bulletSections ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '24px' }}>
             {topic.bulletSections.map((section, sIdx) => (
-              <div key={sIdx} style={{
-                backgroundColor: '#ffffff',
+              <div key={sIdx} className="bg-white" style={{
                 border: '3px solid var(--text)',
                 boxShadow: '4px 4px 0px var(--text)',
                 borderRadius: '8px',
@@ -167,7 +166,7 @@ export default function ContentArea({ topic }) {
                       <li key={iIdx} style={{ 
                         fontSize: '0.95rem', 
                         lineHeight: '1.6', 
-                        color: '#1e293b',
+                        color: 'var(--text)',
                         paddingLeft: isNested ? '20px' : '0',
                         listStyleType: isNested ? 'circle' : 'disc'
                       }}>
@@ -194,15 +193,15 @@ export default function ContentArea({ topic }) {
             )}
 
             {topic.practiceProblems && (
-              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #10b981', marginBottom: '24px' }}>
-                <h3 style={{ marginTop: 0, color: '#10b981' }}>🛠 Các dạng bài thực hành</h3>
+              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--success)', marginBottom: '24px' }}>
+                <h3 style={{ marginTop: 0, color: 'var(--success)' }}>🛠 Các dạng bài thực hành</h3>
                 <p style={{ marginBottom: 0, fontWeight: 'bold' }}>{topic.practiceProblems}</p>
               </div>
             )}
 
             {topic.memoryTrick && (
-              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid #F59E0B', marginBottom: '24px' }}>
-                <h3 style={{ marginTop: 0, color: '#F59E0B' }}>Mẹo nhớ nhanh</h3>
+              <div className="section highlight-box" style={{ backgroundColor: 'var(--bg-secondary)', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--warning)', marginBottom: '24px' }}>
+                <h3 style={{ marginTop: 0, color: 'var(--warning)' }}>Mẹo nhớ nhanh</h3>
                 <p style={{ marginBottom: 0, fontStyle: 'italic' }}>{topic.memoryTrick}</p>
               </div>
             )}
@@ -211,12 +210,11 @@ export default function ContentArea({ topic }) {
               <div className="section">
                 <h3>Các hàm hỗ trợ sẵn (Built-in Methods)</h3>
                 <div style={{ overflowX: 'auto', marginTop: '12px' }}>
-                  <table style={{ 
+                  <table className="bg-white" style={{ 
                     width: '100%', 
                     borderCollapse: 'collapse', 
                     border: '3px solid var(--text)',
                     boxShadow: '4px 4px 0px var(--text)',
-                    backgroundColor: 'white',
                     marginBottom: '24px'
                   }}>
                     <thead>
@@ -241,7 +239,7 @@ export default function ContentArea({ topic }) {
                                   {parts[0]}
                                 </code>
                               </td>
-                              <td style={{ padding: '12px', verticalAlign: 'middle', lineHeight: '1.5', color: '#334155' }}>
+                              <td style={{ padding: '12px', verticalAlign: 'middle', lineHeight: '1.5', color: 'var(--text)' }}>
                                 {parts.slice(1).join(' - ')}
                               </td>
                             </tr>
@@ -249,7 +247,7 @@ export default function ContentArea({ topic }) {
                         } else {
                           return (
                             <tr key={index} style={{ borderBottom: index < topic.builtInMethods.length - 1 ? '2px solid var(--text)' : 'none' }}>
-                              <td colSpan="2" style={{ padding: '12px', verticalAlign: 'middle', lineHeight: '1.5', color: '#334155', fontWeight: '500' }}>
+                              <td colSpan="2" style={{ padding: '12px', verticalAlign: 'middle', lineHeight: '1.5', color: 'var(--text)', fontWeight: '500' }}>
                                 {method}
                               </td>
                             </tr>
@@ -268,12 +266,11 @@ export default function ContentArea({ topic }) {
           <div className="section" style={{ marginTop: '24px' }}>
             <h3>Tóm tắt nhanh (JCF Summary)</h3>
             <div style={{ overflowX: 'auto', marginTop: '12px' }}>
-              <table style={{ 
+              <table className="bg-white" style={{ 
                 width: '100%', 
                 borderCollapse: 'collapse', 
                 border: '3px solid var(--text)',
                 boxShadow: '4px 4px 0px var(--text)',
-                backgroundColor: 'white',
                 marginBottom: '24px'
               }}>
                 <thead>
@@ -300,7 +297,7 @@ export default function ContentArea({ topic }) {
                           borderRight: cIdx < row.length - 1 ? '3px solid var(--text)' : 'none', 
                           verticalAlign: 'middle',
                           lineHeight: '1.5', 
-                          color: '#334155',
+                          color: 'var(--text)',
                           fontWeight: cIdx === 0 ? 'bold' : 'normal'
                         }}>
                           <FormattedText text={cell} />
@@ -317,10 +314,9 @@ export default function ContentArea({ topic }) {
         {topic.comparisonPair && (
           <div className="section" style={{ marginTop: '24px' }}>
             <h3 style={{ marginBottom: '16px' }}>⚔️ ĐỐI ĐẦU TRỰC DIỆN (HEAD-TO-HEAD COMPARISON)</h3>
-            <div style={{
+            <div className="bg-white" style={{
               border: '3px solid var(--text)',
               boxShadow: '6px 6px 0px var(--text)',
-              backgroundColor: 'white',
               borderRadius: '8px',
               padding: '20px',
               position: 'relative'
@@ -342,7 +338,7 @@ export default function ContentArea({ topic }) {
                 gap: '16px' 
               }}>
                 {topic.comparisonPair.items.map((item, iIndex) => (
-                  <div key={iIndex} style={{
+                  <div key={iIndex} className="comparison-item" style={{
                     border: '2px solid var(--text)',
                     borderRadius: '6px',
                     padding: '16px',
@@ -358,7 +354,7 @@ export default function ContentArea({ topic }) {
                     }}>
                       {item.name}
                     </div>
-                    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: '1.5', color: '#1E293B', whiteSpace: 'pre-line' }}>
+                    <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: '1.5', color: 'var(--text)', whiteSpace: 'pre-line' }}>
                       {item.detail}
                     </p>
                   </div>
@@ -398,20 +394,19 @@ export default function ContentArea({ topic }) {
                   return (
                     <div 
                       key={index}
-                      className="card"
+                      className={`card ${isOpen ? 'quiz-open' : 'bg-white'}`}
                       style={{ 
-                        border: '3px solid #1C293C', 
+                        border: '3px solid var(--border-color)', 
                         borderRadius: '8px', 
                         padding: '16px', 
-                        backgroundColor: isOpen ? '#f0fdf4' : 'white',
-                        boxShadow: '4px 4px 0px #1C293C',
+                        boxShadow: '4px 4px 0px var(--shadow-color)',
                         transition: 'all 0.15s ease',
                         cursor: 'pointer'
                       }}
                       onClick={() => setOpenQuizzes(prev => ({ ...prev, [index]: !prev[index] }))}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
-                        <h4 style={{ margin: 0, fontSize: '1.05rem', color: '#1C293C', lineHeight: '1.4' }}>
+                        <h4 style={{ margin: 0, fontSize: '1.05rem', color: 'var(--text)', lineHeight: '1.4' }}>
                           🤔 Câu hỏi {index + 1}: {quiz.q}
                         </h4>
                         <button 
@@ -420,8 +415,9 @@ export default function ContentArea({ topic }) {
                             padding: '4px 10px', 
                             fontSize: '0.85rem', 
                             whiteSpace: 'nowrap',
-                            backgroundColor: isOpen ? '#86efac' : '#e2e8f0',
-                            border: '2px solid #1C293C',
+                            backgroundColor: isOpen ? 'var(--success)' : 'var(--bg-secondary)',
+                            color: isOpen ? 'white' : 'var(--text)',
+                            border: '2px solid var(--border-color)',
                             boxShadow: 'none'
                           }}
                         >
@@ -432,10 +428,10 @@ export default function ContentArea({ topic }) {
                         <div style={{ 
                           marginTop: '12px', 
                           paddingTop: '12px', 
-                          borderTop: '2px dashed #1C293C', 
+                          borderTop: '2px dashed var(--border-color)', 
                           lineHeight: '1.6',
                           whiteSpace: 'pre-line',
-                          color: '#166534',
+                          color: 'var(--success)',
                           fontWeight: '500'
                         }}>
                           {quiz.a}
@@ -458,20 +454,19 @@ export default function ContentArea({ topic }) {
                     return (
                       <div 
                         key={index}
-                        className="card"
+                        className={`card ${isOpen ? 'essay-open' : 'bg-white'}`}
                         style={{ 
-                          border: '3px solid #1C293C', 
+                          border: '3px solid var(--border-color)', 
                           borderRadius: '8px', 
                           padding: '16px', 
-                          backgroundColor: isOpen ? '#fffbeb' : 'white',
-                          boxShadow: '4px 4px 0px #1C293C',
+                          boxShadow: '4px 4px 0px var(--shadow-color)',
                           transition: 'all 0.15s ease',
                           cursor: 'pointer'
                         }}
                         onClick={() => setOpenEssays(prev => ({ ...prev, [index]: !prev[index] }))}
                       >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
-                          <h4 style={{ margin: 0, fontSize: '1.05rem', color: '#1C293C', lineHeight: '1.4' }}>
+                          <h4 style={{ margin: 0, fontSize: '1.05rem', color: 'var(--text)', lineHeight: '1.4' }}>
                             ✍️ Thử thách {index + 1}: {essay.q}
                           </h4>
                           <button 
@@ -480,8 +475,9 @@ export default function ContentArea({ topic }) {
                               padding: '4px 10px', 
                               fontSize: '0.85rem', 
                               whiteSpace: 'nowrap',
-                              backgroundColor: isOpen ? '#fde047' : '#e2e8f0',
-                              border: '2px solid #1C293C',
+                              backgroundColor: isOpen ? 'var(--warning)' : 'var(--bg-secondary)',
+                              color: isOpen ? '#1C293C' : 'var(--text)',
+                              border: '2px solid var(--border-color)',
                               boxShadow: 'none'
                             }}
                           >
@@ -492,9 +488,9 @@ export default function ContentArea({ topic }) {
                           <div style={{ 
                             marginTop: '12px', 
                             paddingTop: '12px', 
-                            borderTop: '2px dashed #1C293C', 
+                            borderTop: '2px dashed var(--border-color)', 
                             lineHeight: '1.6',
-                            color: '#854d0e',
+                            color: 'var(--warning)',
                             fontWeight: '500'
                           }}>
                             <strong>📌 Gợi ý phân tích:</strong> {essay.hint}
@@ -524,10 +520,10 @@ export default function ContentArea({ topic }) {
                     key={index}
                     className="card"
                     style={{ 
-                      border: '3px solid #1C293C', 
+                      border: '3px solid var(--border-color)', 
                       borderRadius: '8px', 
                       padding: '0px', 
-                      boxShadow: '4px 4px 0px #1C293C',
+                      boxShadow: '4px 4px 0px var(--shadow-color)',
                       overflow: 'hidden',
                       transition: 'all 0.15s ease'
                     }}
@@ -537,7 +533,7 @@ export default function ContentArea({ topic }) {
                         width: '100%',
                         textAlign: 'left',
                         padding: '16px',
-                        background: isOpen ? 'var(--primary)' : 'white',
+                        background: isOpen ? 'var(--primary)' : 'var(--surface)',
                         border: 'none',
                         cursor: 'pointer',
                         fontWeight: 'bold',
@@ -545,7 +541,7 @@ export default function ContentArea({ topic }) {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        color: '#1C293C',
+                        color: isOpen ? '#1C293C' : 'var(--text)',
                         outline: 'none',
                         transition: 'background-color 0.15s ease',
                         gap: '12px'
@@ -556,13 +552,12 @@ export default function ContentArea({ topic }) {
                       <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>{isOpen ? '−' : '+'}</span>
                     </button>
                     {isOpen && (
-                      <div style={{ 
+                      <div className="bg-white" style={{ 
                         padding: '20px', 
-                        backgroundColor: '#f8fafc',
-                        borderTop: '3px solid #1C293C',
+                        borderTop: '3px solid var(--border-color)',
                         lineHeight: '1.7',
                         whiteSpace: 'pre-line',
-                        color: '#334155',
+                        color: 'var(--text)',
                         fontSize: '0.98rem'
                       }}>
                         {faq.a}
