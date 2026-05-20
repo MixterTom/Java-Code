@@ -1,7 +1,62 @@
 export const dataTypesConversions = [
   {
+    id: 'intro_wora',
+    title: '1. Giới thiệu Java & Nguyên tắc WORA',
+    type: 'Tổng quan & Triết lý',
+    description: 'Java là ngôn ngữ lập trình bậc cao, hướng đối tượng, độc lập nền tảng nhờ máy ảo JVM và trình biên dịch bytecode.',
+    interviewSignals: 'Hiểu bản chất của nguyên tắc "Write Once, Run Anywhere" (WORA), vai trò của JVM, JRE, JDK và các đặc trưng cốt lõi của ngôn ngữ Java.',
+    practiceProblems: 'Viết và biên dịch một chương trình Java đơn giản; phân tích các tính năng bảo mật, quản lý bộ nhớ của Java.',
+    builtInMethods: [
+      'JVM - Java Virtual Machine (Máy ảo Java chạy bytecode)',
+      'Bytecode - Mã trung gian (.class) được tạo ra từ mã nguồn (.java)',
+      'WORA - Triết lý Viết một lần, Chạy mọi nơi của Java',
+      'JDK - Bộ công cụ phát triển Java dành cho lập trình viên',
+      'JRE - Môi trường thực thi Java dùng để chạy ứng dụng'
+    ],
+    memoryTrick: '🧠 Mã nguồn Java (.java) giống như bản thiết kế bằng tiếng Anh. Trình biên dịch dịch nó thành Bytecode (.class) giống như ngôn ngữ Esperanto chung. JVM ở mỗi hệ điều hành đóng vai trò là thông dịch viên dịch Esperanto sang tiếng bản địa (mã máy gốc).',
+    code: `public class Main {
+    public static void main(String[] args) {
+        // Nguyên tắc WORA: Chạy trên mọi nền tảng có JVM
+        System.out.println("Write Once, Run Anywhere!");
+    }
+}`,
+    output: `Write Once, Run Anywhere!`
+  },
+  {
+    id: 'basic_structure',
+    title: '2. Cấu trúc Lập trình Cơ bản',
+    type: 'Cấu trúc mã nguồn',
+    description: 'Tìm hiểu Comments, Packages, Source Files, Classes, Methods, Import và các quy tắc thực hành tốt (Best Practices).',
+    interviewSignals: 'Hiểu quy tắc đặt tên (naming conventions), cách phân chia package, cách import các lớp và quản lý tài nguyên hiệu quả.',
+    practiceProblems: 'Tổ chức mã nguồn theo package; viết Javadoc cho phương thức; thực thi chương trình nhập/xuất dữ liệu cơ bản.',
+    builtInMethods: [
+      '//, /* */, /** */ - Ba loại bình luận (Comments) trong Java',
+      'package - Khai báo thư mục logic chứa lớp nguồn',
+      'import - Nạp các thư viện, lớp từ package khác vào sử dụng',
+      'public class ClassName - Tên class public trùng tên file .java',
+      'try-with-resources - Đóng tài nguyên tự động sau khi sử dụng'
+    ],
+    memoryTrick: '🧠 Package giống như thư mục phân loại tệp tin trong máy tính của bạn. Class giống như một tệp tin đơn lẻ. Quy tắc đặt tên và cấu trúc mã giống như biển chỉ dẫn giao thông giúp lập trình viên không bị lạc trong các dự án doanh nghiệp khổng lồ.',
+    code: `package com.example.basics; // Khai báo package
+
+import java.util.ArrayList; // Import lớp từ gói java.util
+
+public class Main {
+    // Phương thức chính khởi chạy ứng dụng
+    public static void main(String[] args) {
+        // Comment một dòng
+        /* Comment nhiều dòng
+           để mô tả thuật toán */
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Java Structure");
+        System.out.println("Dự án chạy thành công: " + list);
+    }
+}`,
+    output: `Dự án chạy thành công: [Java Structure]`
+  },
+  {
     id: 'primitives_references',
-    title: '1. Kiểu dữ liệu (Primitive vs Reference)',
+    title: '3. Kiểu dữ liệu (Primitive vs Reference)',
     type: 'Bộ nhớ & Phân loại',
     description: 'Java phân chia hệ thống kiểu dữ liệu thành 2 nhóm chính: Kiểu nguyên thủy (Primitive) lưu trữ giá trị thật trực tiếp trên vùng nhớ Stack, và Kiểu tham chiếu (Reference) lưu trữ địa chỉ trỏ đến đối tượng nằm trên vùng nhớ Heap.',
     interviewSignals: 'Phân biệt cách cấp phát bộ nhớ (Stack vs Heap), cơ chế so sánh giá trị (== vs .equals()) và cách xử lý giá trị null.',
@@ -33,7 +88,7 @@ export const dataTypesConversions = [
   },
   {
     id: 'operators',
-    title: '2. Toán tử trong Java (Operators)',
+    title: '4. Toán tử trong Java (Operators)',
     type: 'Tính toán & Điều kiện',
     description: 'Các ký hiệu đặc biệt dùng để thao tác trên dữ liệu. Java hỗ trợ toán tử số học, logic, quan hệ, phép gán, toán tử một ngôi và toán tử ba ngôi.',
     interviewSignals: 'Hiểu cơ chế hoạt động của toán tử ba ngôi (Ternary), các toán tử logic &&, || và cơ chế đoản mạch (Short-circuit).',
@@ -66,7 +121,7 @@ export const dataTypesConversions = [
   },
   {
     id: 'arrays_core',
-    title: '3. Mảng & Duyệt Mảng (Arrays & Loops)',
+    title: '5. Mảng & Duyệt Mảng (Arrays & Loops)',
     type: 'Cấu trúc dữ liệu',
     description: 'Mảng là tập hợp nhiều phần tử có cùng kiểu dữ liệu được xếp liền kề nhau trong bộ nhớ Heap. Kích thước mảng là cố định và không thể thay đổi sau khi khởi tạo.',
     interviewSignals: 'Tại sao mảng trong Java có kích thước cố định? Cách duyệt mảng 1D, 2D và cơ chế hoạt động của mảng Jagged (Mảng lởm chởm).',
@@ -102,7 +157,7 @@ export const dataTypesConversions = [
   },
   {
     id: 'arrays_utility',
-    title: '4. Lớp Tiện Ích Arrays (Arrays Utility & Algos)',
+    title: '6. Lớp Tiện Ích Arrays (Arrays Utility & Algos)',
     type: 'Tiện ích & Thuật toán',
     description: 'Java cung cấp lớp tiện ích java.util.Arrays chứa rất nhiều phương thức tĩnh cực mạnh để thao tác nhanh như sắp xếp, tìm kiếm nhị phân, sao chép và so sánh các phần tử trong mảng tĩnh.',
     interviewSignals: 'Sử dụng Arrays.sort() (O(N log N)) khi cần sắp xếp nhanh. Tìm kiếm nhị phân chỉ hoạt động khi mảng đã được sắp xếp trước.',
@@ -135,7 +190,7 @@ public class Main {
   },
   {
     id: 'string',
-    title: '5. Chuỗi Bất Biến (String)',
+    title: '7. Chuỗi Bất Biến (String)',
     type: 'Immutable Class',
     description: 'String trong Java là chuỗi ký tự bất biến (Immutable). Một khi đã tạo ra, nội dung của nó không thể thay đổi. Mọi thao tác nối hay sửa chuỗi thực chất đều tạo ra một đối tượng String hoàn toàn mới trong bộ nhớ String Pool.',
     interviewSignals: 'Tại sao String lại bất biến? Phân biệt String Pool trên Heap. Tại sao KHÔNG nên dùng toán tử == để so sánh chuỗi (phải dùng .equals()).',
@@ -161,7 +216,7 @@ public class Main {
   },
   {
     id: 'stringbuilder',
-    title: '6. Chuỗi Thay Đổi (StringBuilder)',
+    title: '8. Chuỗi Thay Đổi (StringBuilder)',
     type: 'Mutable Class',
     description: 'StringBuilder đại diện cho chuỗi ký tự có thể thay đổi (Mutable). Hỗ trợ chèn, sửa, đảo ngược và nối chuỗi cực kỳ mạnh mẽ trên cùng một vùng nhớ mà không sinh ra đối tượng mới, giúp tiết kiệm bộ nhớ tối đa.',
     interviewSignals: 'Sử dụng StringBuilder bất cứ khi nào cần nối chuỗi liên tục trong vòng lặp lớn (O(N) thay vì O(N^2) của String). Khác biệt giữa StringBuilder (non-thread-safe) và StringBuffer (thread-safe).',
@@ -187,7 +242,7 @@ public class Main {
   },
   {
     id: 'base_conversions',
-    title: '7. Chuyển đổi Cơ số (Base Conversions)',
+    title: '9. Chuyển đổi Cơ số (Base Conversions)',
     type: 'Tiện ích hệ đếm',
     description: 'Cách biểu diễn và chuyển đổi linh hoạt giữa các hệ cơ số phổ biến trong lập trình: Thập phân (10), Nhị phân (2), Bát phân (8), Thập lục phân (16).',
     interviewSignals: 'Cách biểu diễn số nguyên dạng Nhị phân (0b) và Thập lục phân (0x) trong Java. Thuật toán thao tác bitwise.',
@@ -212,8 +267,63 @@ public class Main {
     output: `So sánh nhị phân và hex: true\nChuỗi nhị phân: 1111`
   },
   {
+    id: 'datatype_glossary',
+    title: '10. Thuật ngữ cốt lõi (Java Basics Glossary)',
+    type: 'Glossary',
+    description: 'Các định nghĩa và thuật ngữ cốt lõi về ngôn ngữ Java, kiểu dữ liệu, toán tử, mảng và lập trình cơ bản.',
+    bulletSections: [
+      {
+        title: "Tổng quan về Java & Hướng đối tượng",
+        items: [
+          "**Java**: Một ngôn ngữ lập trình cấp cao, dựa trên lớp, hướng đối tượng, được phát triển bởi Sun Microsystems (nay là Oracle).",
+          "**Máy ảo Java (JVM)**: Một môi trường thời gian chạy trừu tượng thực thi bytecode Java. Đây là thành phần chính cho phép tính năng \"Write Once, Run Anywhere\".",
+          "**Bytecode**: Mã trung gian được tạo ra khi mã nguồn Java được biên dịch. Bytecode này sau đó được JVM phiên dịch hoặc biên dịch kịp thời để thực thi.",
+          "**\"Write Once, Run Anywhere\" (WORA)**: Triết lý cốt lõi của Java, cho phép mã đã biên dịch chạy trên bất kỳ nền tảng nào hỗ trợ JVM mà không cần biên dịch lại.",
+          "**Hướng đối tượng (Object-Oriented)**: Một phương pháp lập trình dựa trên các khái niệm về \"đối tượng\", có thể chứa dữ liệu và mã dưới dạng các thuộc tính và phương thức. Các tính năng chính bao gồm đóng gói, kế thừa và đa hình.",
+          "**Đóng gói (Encapsulation)**: Gói dữ liệu (thuộc tính) và các phương thức hoạt động trên dữ liệu đó vào một đơn vị duy nhất (lớp), đồng thời ẩn các chi tiết triển khai khỏi bên ngoài.",
+          "**Kế thừa (Inheritance)**: Một cơ chế trong đó một lớp (lớp con) có thể kế thừa các trường và phương thức từ một lớp khác (lớp cha), cho phép tái sử dụng mã.",
+          "**Đa hình (Polymorphism)**: Khả năng một đối tượng có nhiều dạng, cho phép các đối tượng của các lớp khác nhau được đối xử như các đối tượng của một kiểu chung thông qua một giao diện chung.",
+          "**Đa luồng (Multithreaded)**: Khả năng một chương trình thực thi đồng thời nhiều phần của chính nó (luồng) để cải thiện hiệu suất hoặc khả năng phản hồi.",
+          "**Trình biên dịch Just-In-Time (JIT)**: Một phần của JVM biên dịch bytecode thành mã máy cục bộ trong thời gian chạy, giúp tăng tốc độ thực thi chương trình Java."
+        ]
+      },
+      {
+        title: "Cấu trúc Mã & Kiểu dữ liệu",
+        items: [
+          "**Bình luận (Comments)**: Các đoạn văn bản trong mã nguồn bị bỏ qua bởi trình biên dịch, được sử dụng để giải thích mã cho người đọc.",
+          "**Gói (Package)**: Một cơ chế để tổ chức các lớp và giao diện Java thành các nhóm liên quan, giúp quản lý không gian tên và module hóa.",
+          "**Lớp (Class)**: Một bản thiết kế hoặc khuôn mẫu để tạo đối tượng, định nghĩa các thuộc tính và phương thức mà các đối tượng của nó sẽ có.",
+          "**Phương thức (Method)**: Một khối mã thực hiện một nhiệm vụ cụ thể và được liên kết với một đối tượng hoặc lớp.",
+          "**Kiểu dữ liệu nguyên thủy (Primitive Data Types)**: Các kiểu dữ liệu cơ bản trong Java (ví dụ: int, byte, boolean, char) lưu trữ giá trị trực tiếp và có kích thước cố định.",
+          "**Kiểu dữ liệu tham chiếu (Reference Data Types)**: Các kiểu dữ liệu trong Java (ví dụ: String, Array, Class, Interface) lưu trữ địa chỉ của một đối tượng trong bộ nhớ, chứ không phải bản thân giá trị.",
+          "**Chuỗi (String)**: Một kiểu dữ liệu tham chiếu trong Java được sử dụng để lưu trữ một chuỗi ký tự.",
+          "**Giao diện (Interface)**: Một bản thiết kế cho một lớp, chỉ chứa các khai báo phương thức trừu tượng và hằng số. Một lớp có thể triển khai nhiều giao diện.",
+          "**Enum**: Một kiểu dữ liệu đặc biệt cho phép một biến là một tập hợp các hằng số được xác định trước."
+        ]
+      },
+      {
+        title: "Toán tử & Mảng",
+        items: [
+          "**Toán tử (Operator)**: Các ký hiệu đặc biệt thực hiện các thao tác trên một hoặc nhiều toán hạng (ví dụ: +, -, ==, &&).",
+          "**Toán tử số học (Arithmetic Operators)**: Được sử dụng để thực hiện các phép toán số học như cộng, trừ, nhân, chia, lấy dư.",
+          "**Toán tử quan hệ (Relational Operators)**: Được sử dụng để so sánh hai giá trị (ví dụ: bằng, không bằng, lớn hơn).",
+          "**Toán tử logic (Logical Operators)**: Được sử dụng để kết hợp hoặc sửa đổi các biểu thức boolean (ví dụ: AND, OR, NOT).",
+          "**Toán tử gán (Assignment Operators)**: Được sử dụng để gán giá trị cho một biến (ví dụ: =, +=).",
+          "**Toán tử một ngôi (Unary Operators)**: Các toán tử hoạt động trên một toán hạng duy nhất (ví dụ: tăng ++, giảm --, phủ định !).",
+          "**Toán tử ba ngôi (Ternary Operator)**: Một toán tử điều kiện đặc biệt hoạt động với ba toán hạng, là dạng viết tắt của câu lệnh if-else.",
+          "**Mảng (Array)**: Một cấu trúc dữ liệu lưu trữ một tập hợp các phần tử có cùng kiểu dữ liệu trong một vị trí bộ nhớ liền kề.",
+          "**Mảng đa chiều (Multi-dimensional Array)**: Một mảng của các mảng, thường được sử dụng để đại diện cho bảng hoặc ma trận (ví dụ: mảng 2D).",
+          "**Chỉ mục mảng (Array Index)**: Vị trí số của một phần tử trong một mảng. Trong Java, chỉ mục bắt đầu từ 0.",
+          "**Mảng Jagged (Jagged Array)**: Một loại mảng đa chiều trong Java nơi các hàng (hoặc các chiều con) có thể có độ dài khác nhau."
+        ]
+      }
+    ],
+    code: `// Chúc bạn học tốt! Nắm vững thuật ngữ cốt lõi giúp bạn tự tin phỏng vấn.`,
+    output: `Java Basics Glossary loaded.`
+  },
+  {
     id: 'datatype_review_quizzes',
-    title: '8. Câu hỏi Ôn tập & Trắc nghiệm (Java Basics Quizzes)',
+    title: '11. Câu hỏi Ôn tập & Trắc nghiệm (Java Basics Quizzes)',
     type: 'Luyện tập & Tự kiểm tra',
     description: 'Tuyển tập 10 câu hỏi đố nhanh kiểm tra kiến thức về WORA, bình luận, gói, kiểu dữ liệu, toán tử, mảng và 5 câu tự luận tư duy.',
     interviewSignals: 'Củng cố nền tảng Core Java trước khi đi sâu vào lập trình hướng đối tượng hoặc các thuật toán nâng cao.',
@@ -228,43 +338,43 @@ public class Main {
     quizzes: [
       {
         q: "\"Write Once, Run Anywhere\" (WORA) trong Java là gì?",
-        a: "WORA nghĩa là mã nguồn Java sau khi biên dịch thành bytecode trung gian có thể chạy trên bất kỳ hệ điều hành nào (Windows, macOS, Linux) mà không cần biên dịch lại, miễn là hệ điều hành đó có cài đặt Máy ảo Java (JVM) tương thích."
+        a: "\"Write Once, Run Anywhere\" (WORA) là một tính năng chính của Java có nghĩa là mã Java, sau khi được biên dịch thành bytecode, có thể chạy trên bất kỳ nền tảng nào miễn là nền tảng đó có Máy ảo Java (JVM) tương thích. Điều này loại bỏ nhu cầu biên dịch lại mã cho các hệ điều hành khác nhau, nâng cao tính di động."
       },
       {
         q: "Nêu ba loại bình luận khác nhau trong Java và mục đích chính của chúng.",
-        a: "Ba loại bình luận bao gồm:\n1) Bình luận một dòng (//): giải thích nhanh.\n2) Bình luận nhiều dòng (/* ... */): giải thích đoạn code dài.\n3) Bình luận tài liệu (/** ... */): tạo tài liệu API Javadoc tự động."
+        a: "Ba loại bình luận trong Java là: bình luận một dòng (//) để giải thích nhanh, bình luận nhiều dòng (/* ... */) cho các đoạn mã dài hơn, và bình luận tài liệu (/** ... */) được sử dụng để tạo Javadoc và tài liệu API tự động. Mỗi loại phục vụ mục đích khác nhau trong việc cải thiện sự rõ ràng và khả năng bảo trì mã."
       },
       {
         q: "Tại sao việc sử dụng các gói (packages) lại quan trọng trong các dự án Java lớn?",
-        a: "Packages giúp nhóm các lớp và giao diện có liên quan lại với nhau một cách khoa học, module hóa dự án lớn và đặc biệt là tránh xung đột đặt tên (nhiều lớp trùng tên nhau nhưng nằm ở các gói khác nhau thì vẫn hợp lệ)."
+        a: "Việc sử dụng các gói (packages) trong Java rất quan trọng vì chúng giúp nhóm các lớp và giao diện liên quan lại với nhau, tránh xung đột đặt tên giữa các lớp có cùng tên nhưng khác chức năng. Ngoài ra, gói còn giúp quản lý cấu trúc dự án lớn một cách hiệu quả hơn bằng cách tổ chức mã thành các mô-đun logic."
       },
       {
         q: "Giải thích sự khác biệt cơ bản giữa kiểu dữ liệu nguyên thủy và kiểu dữ liệu tham chiếu trong Java.",
-        a: "- Kiểu nguyên thủy (Primitive): Lưu trực tiếp giá trị thực tế trong Stack, kích thước cố định, không thể nhận giá trị null.\n- Kiểu tham chiếu (Reference): Lưu địa chỉ bộ nhớ trỏ đến đối tượng thực tế trên Heap, kích thước linh hoạt, có thể nhận giá trị null."
+        a: "Sự khác biệt cơ bản là kiểu dữ liệu nguyên thủy lưu trữ giá trị thực tế của dữ liệu một cách trực tiếp trong bộ nhớ, có kích thước cố định và không thể là null. Ngược lại, kiểu dữ liệu tham chiếu không lưu trữ giá trị trực tiếp mà lưu trữ địa chỉ bộ nhớ (tham chiếu) đến đối tượng hoặc tập hợp dữ liệu, cho phép các cấu trúc phức tạp hơn và có thể là null."
       },
       {
-        q: "Cho ví dụ về một kiểu dữ liệu nguyên thủy và một kiểu dữ liệu tham chiếu, cùng với một trường hợp sử dụng phù hợp.",
-        a: "- Kiểu nguyên thủy: 'int', dùng để lưu các số nguyên đơn giản như tuổi (int age = 20;).\n- Kiểu tham chiếu: 'String', dùng để lưu trữ và thao tác với văn bản (String name = \"Antigravity\";)."
+        q: "Cho ví dụ về một kiểu dữ liệu nguyên thủy và một kiểu dữ liệu tham chiếu, cùng với một trường hợp sử dụng phù hợp cho mỗi loại.",
+        a: "Một ví dụ về kiểu dữ liệu nguyên thủy là int, dùng để lưu trữ các số nguyên lớn, ví dụ: int population = 1000000;. Một ví dụ về kiểu dữ liệu tham chiếu là String, dùng để xử lý văn bản, ví dụ: String greeting = \"Hello, World!\";."
       },
       {
         q: "Toán tử quan hệ được sử dụng để làm gì và chúng trả về loại giá trị nào?",
-        a: "Toán tử quan hệ (==, !=, >, <, >=, <=) dùng để so sánh hai giá trị hoặc biểu thức. Chúng luôn trả về một giá trị chân trị kiểu boolean (chỉ có thể là true hoặc false)."
+        a: "Toán tử quan hệ (còn gọi là toán tử so sánh) được sử dụng để so sánh hai giá trị hoặc biểu thức. Chúng trả về một giá trị boolean, tức là true nếu điều kiện so sánh là đúng hoặc false nếu điều kiện so sánh là sai."
       },
       {
         q: "Mô tả sự khác biệt giữa toán tử && (AND logic) và || (OR logic).",
-        a: "- && (AND logic): Chỉ trả về true nếu TẤT CẢ các điều kiện đều đúng (true).\n- || (OR logic): Trả về true chỉ cần ÍT NHẤT MỘT điều kiện đúng (true)."
+        a: "Toán tử && (AND logic) trả về true chỉ khi *cả hai* điều kiện được kết hợp đều là true; nếu không, nó trả về false. Ngược lại, toán tử || (OR logic) trả về true nếu *ít nhất một* trong các điều kiện được kết hợp là true; nó chỉ trả về false khi cả hai điều kiện đều là false."
       },
       {
         q: "Trong Java, toán tử ba ngôi (ternary operator) là gì và cú pháp của nó như thế nào?",
-        a: "Là toán tử điều kiện rút gọn cho câu lệnh if-else truyền thống. Cú pháp: `điều_kiện ? biểu_thức_đúng : biểu_thức_sai;`."
+        a: "Toán tử ba ngôi trong Java là một toán tử điều kiện viết tắt của câu lệnh if-else truyền thống, hoạt động với ba toán quang. Cú pháp của nó là condition ? expression1 : expression2;, trong đó expression1 được đánh giá nếu condition là true, và expression2 được đánh giá nếu condition là false."
       },
       {
         q: "Giải thích tại sao mảng trong Java được coi là cấu trúc dữ liệu \"kích thước cố định\".",
-        a: "Vì ngay tại thời điểm khởi tạo, bạn phải chỉ rõ số phần tử của mảng. JVM sẽ cấp phát một vùng nhớ liền kề khớp với kích thước đó trên Heap. Kích thước này bị khóa cứng và không thể phình to hay co lại trong suốt thời gian chạy."
+        a: "Mảng trong Java được coi là cấu trúc dữ liệu \"kích thước cố định\" vì một khi bạn đã khai báo và khởi tạo một mảng với một kích thước nhất định, bạn không thể thay đổi số lượng phần tử mà nó có thể chứa. Để thay đổi kích thước, bạn phải tạo một mảng mới và sao chép các phần tử cũ sang."
       },
       {
         q: "Ưu điểm của việc sử dụng vòng lặp for-each nâng cao so với vòng lặp for truyền thống khi lặp qua một mảng là gì?",
-        a: "For-each cung cấp cú pháp ngắn gọn, sạch đẹp, dễ đọc hơn. Nó tự động quản lý chỉ mục index chạy từ đầu đến cuối mảng, hạn chế tối đa lỗi vượt quá chỉ mục mảng (ArrayIndexOutOfBoundsException)."
+        a: "Ưu điểm của việc sử dụng vòng lặp for-each nâng cao là nó cung cấp một cú pháp ngắn gọn và dễ đọc hơn để lặp qua tất cả các phần tử trong một mảng hoặc tập hợp. Nó tự động xử lý việc quản lý chỉ mục, giúp giảm lỗi và làm cho mã sạch hơn khi bạn chỉ cần truy cập các giá trị của phần tử chứ không cần chỉ mục của chúng."
       }
     ],
     essays: [
@@ -292,7 +402,7 @@ public class Main {
   },
   {
     id: 'datatype_faqs',
-    title: '9. Câu hỏi Phỏng vấn thường gặp (Java Basics FAQs)',
+    title: '12. Câu hỏi Phỏng vấn thường gặp (Java Basics FAQs)',
     type: 'Kinh nghiệm Phỏng vấn',
     description: 'Tổng hợp 8 câu hỏi phỏng vấn kinh điển về Giới thiệu Java, cấu trúc mã, Comments, Packages, Kiểu dữ liệu, Toán tử, Mảng và Best Practices.',
     interviewSignals: 'Tổng hợp các câu trả lời chi tiết và lập luận thuyết phục nhất dành cho nhà tuyển dụng để khẳng định nền tảng vững vàng của bạn.',
@@ -306,36 +416,36 @@ public class Main {
     memoryTrick: '🧠 Khi phỏng vấn, hãy luôn kết hợp giải thích lý thuyết bộ nhớ Stack/Heap kèm theo ví dụ thực tế đời sống để đạt điểm tối đa từ nhà tuyển dụng!',
     faqs: [
       {
-        q: "FAQ 1: Java là gì và những đặc điểm chính giúp nó trở thành một trong những ngôn ngữ phổ biến nhất?",
-        a: "Java là một ngôn ngữ lập trình cấp cao, hướng đối tượng, dựa trên lớp và cực kỳ bảo mật do James Gosling phát triển năm 1995.\n\nCác đặc điểm chính nổi bật bao gồm:\n✔ Viết một lần, chạy mọi nơi (WORA): Mã Java biên dịch ra bytecode chạy trên mọi hệ điều hành nhờ JVM.\n✔ Hướng đối tượng hoàn chỉnh: Hỗ trợ mạnh mẽ Đóng gói, Kế thừa, Đa hình.\n✔ Tự động thu gom rác (Garbage Collection): Tự động giải phóng bộ nhớ Heap, giảm thiểu rò rỉ RAM.\n✔ Bảo mật cao: Không cho phép thao tác con trỏ trực tiếp, tích hợp cơ chế bảo vệ Class Loader."
+        q: "FAQ 1: Java là gì và những đặc điểm chính của nó là gì?",
+        a: "Java là một ngôn ngữ lập trình cấp cao, hướng đối tượng, dựa trên lớp, được phát triển bởi James Gosling tại Sun Microsystems (nay là Oracle và được phát hành lần đầu vào năm 1995. Đặc điểm nổi bật của Java là nguyên tắc \"Viết một lần, chạy mọi nơi\" (WORA), đạt được thông qua việc biên dịch mã Java thành bytecode, sau đó có thể chạy trên bất kỳ nền tảng nào có Máy ảo Java (JVM).\n\nCác tính năng chính của Java bao gồm:\n- **Hướng đối tượng:** Hỗ trợ đóng gói, kế thừa và đa hình thông qua các đối tượng và lớp.\n- **Độc lập nền tảng:** Đạt được nhờ JVM.\n- **Đơn giản:** Được thiết kế để dễ học và sử dụng.\n- **Bảo mật:** Tích hợp các tính năng bảo mật và không sử dụng con trỏ rõ ràng.\n- **Mạnh mẽ:** Có khả năng quản lý bộ nhớ mạnh mẽ, xử lý ngoại lệ và thu gom rác.\n- **Đa luồng:** Hỗ trợ thực thi đồng thời nhiều phần của chương trình.\n- **Hiệu suất cao:** Các trình biên dịch Just-In-Time (JIT) tối ưu hóa việc thực thi bytecode.\n- **Phân tán:** Được thiết kế cho các ứng dụng tập trung vào mạng.\n- **Động:** Có thể thích ứng với các môi trường đang phát triển."
       },
       {
         q: "FAQ 2: Các loại bình luận (comments) khác nhau trong Java là gì và tại sao chúng quan trọng?",
-        a: "Java cung cấp 3 loại bình luận chính:\n1. Bình luận một dòng (//): Giải thích ngắn gọn ở cuối dòng code.\n2. Bình luận nhiều dòng (/* ... */): Dùng để ghi chú cả một đoạn thuật toán dài.\n3. Bình luận tài liệu (/** ... */): Dùng ở đầu class hoặc method, có thể dùng công cụ Javadoc quét tự động để xuất ra trang tài liệu HTML chuyên nghiệp.\n\nTầm quan trọng: Giúp cải thiện độ rõ ràng của mã nguồn, hỗ trợ bảo trì dự án lâu dài và tăng hiệu quả hợp tác làm việc nhóm."
+        a: "Trong Java, có ba loại bình luận chính:\n- **Bình luận một dòng:** Bắt đầu bằng //. Tất cả những gì theo sau dấu gạch chéo là một bình luận. Ví dụ: // Đây là bình luận một dòng.\n- **Bình luận nhiều dòng:** Bắt đầu bằng /* và kết thúc bằng */. Chúng có thể kéo dài nhiều dòng. Ví dụ: /* Đây là bình luận nhiều dòng. Nó có thể kéo dài nhiều dòng. */\n- **Bình luận tài liệu (Documentation comments):** Bắt đầu bằng /**. Chúng được sử dụng để tạo tài liệu, bao gồm Javadoc. Ví dụ: /** * Lớp Calculator cung cấp các phương thức * để thực hiện các phép toán số học cơ bản. */\n\nBình luận rất quan trọng vì các lý do sau:\n- **Độ rõ ràng:** Làm rõ logic phức tạp của mã.\n- **Bảo trì:** Cung cấp ngữ cảnh và giảm nhầm lẫn khi mã được xem xét hoặc sửa đổi sau này.\n- **Hợp tác:** Giúp các lập trình viên khác hiểu công việc của bạn."
       },
       {
-        q: "FAQ 3: \"Packages\" trong Java là gì và tại sao chúng lại cực kỳ hữu ích trong quản lý dự án?",
-        a: "Packages (gói) là cơ chế phân loại và gom nhóm các lớp, giao diện liên quan vào các thư mục logic riêng biệt.\n\nLợi ích chính:\n✔ Quản lý không gian tên: Cho phép các lớp trùng tên tồn tại ở các gói khác nhau mà không lỗi (ví dụ: java.util.Date và java.sql.Date).\n✔ Bảo mật mã nguồn: Kết hợp với Access Modifier để hạn chế truy cập từ các gói bên ngoài.\n✔ Tổ chức cấu trúc: Cấu trúc thư mục của dự án bắt buộc phải ánh xạ khớp hoàn toàn với package khai báo."
+        q: "FAQ 3: \"Packages\" trong Java là gì và tại sao chúng lại hữu ích?",
+        a: "Packages (gói) trong Java là các cơ chế dùng để nhóm các lớp (classes) và giao diện (interfaces) có liên quan lại với nhau. Chúng giúp tổ chức mã nguồn của bạn và giải quyết vấn đề xung đột tên.\n\nCác lợi ích chính của packages:\n- **Nhóm các lớp và giao diện liên quan:** Giúp quản lý các dự án lớn hiệu quả hơn.\n- **Tránh xung đột tên:** Cho phép các lớp có cùng tên tồn tại trong các gói khác nhau mà không gây ra lỗi.\n- **Cấu trúc thư mục:** Cấu trúc thư mục của gói nên khớp với khai báo gói (ví dụ: com.example.myapp tương ứng với thư mục com/example/myapp).\n\nĐể tạo một gói, bạn sử dụng từ khóa package ở đầu tệp nguồn. Khi cần sử dụng các lớp từ các gói khác, bạn phải nhập chúng bằng câu lệnh import."
       },
       {
-        q: "FAQ 4: Phân biệt chi tiết giữa kiểu dữ liệu nguyên thủy (primitive) và kiểu dữ liệu tham chiếu (reference) trong Java.",
-        a: "Đây là câu hỏi phỏng vấn cực kỳ phổ biến:\n\n1. Kiểu nguyên thủy (Primitive):\n- Có 8 kiểu: byte, short, int, long, float, double, char, boolean.\n- Lưu giá trị thật trực tiếp trên vùng nhớ Stack.\n- Kích thước cố định (ví dụ: int luôn là 4 bytes).\n- Không thể nhận giá trị null.\n\n2. Kiểu tham chiếu (Reference):\n- Gồm: String, Arrays, Classes, Interfaces, Enums.\n- Lưu địa chỉ bộ nhớ trên Stack trỏ đến đối tượng thật trên Heap.\n- Kích thước linh hoạt tùy thuộc cấu trúc đối tượng.\n- Có thể nhận giá trị null (gây ra lỗi NullPointerException nếu không xử lý kỹ)."
+        q: "FAQ 4: Phân biệt giữa các kiểu dữ liệu nguyên thủy (primitive data types) và kiểu dữ liệu tham chiếu (reference data types) trong Java.",
+        a: "Trong Java, các kiểu dữ liệu được chia thành hai loại chính:\n\n**Kiểu dữ liệu nguyên thủy (Primitive data types):**\n- **Đặc điểm:** Lưu trữ giá trị thực tế trực tiếp. Có kích thước mặc định và giá trị cố định, không thay đổi. Không thể chứa giá trị null.\n- **Mục đích:** Để lưu trữ các giá trị đơn giản, cơ bản.\n- **Ví dụ:**\n  + byte: Lưu trữ số nguyên từ -128 đến 127 (ví dụ: byte age = 25;).\n  + short: Lưu trữ số nguyên từ -32,768 đến 32,767 (ví dụ: short temperature = -5;).\n  + int: Lưu trữ số nguyên lớn hơn byte và short (ví dụ: int population = 1000000;).\n  + char: Lưu trữ một ký tự đơn (ví dụ: char initial = 'A';).\n  + boolean: Đại diện cho giá trị true hoặc false (ví dụ: boolean isLoggedIn = true;).\n\n**Kiểu dữ liệu tham chiếu (Reference data types):**\n- **Đặc điểm:** Lưu trữ địa chỉ bộ nhớ (tham chiếu) đến các đối tượng hoặc tập hợp dữ liệu. Hỗ trợ các cấu trúc dữ liệu phức tạp hơn. Có thể chứa giá trị null.\n- **Mục đích:** Để định vị các đối tượng hoặc các tập hợp dữ liệu, tổ chức dữ liệu và chức năng liên quan.\n- **Ví dụ:**\n  + String: Chuỗi ký tự (ví dụ: String greeting = \"Hello, World!\";).\n  + Arrays: Tập hợp các giá trị cùng kiểu (ví dụ: int[] scores = {85, 90, 78, 92};).\n  + Classes: Bản thiết kế để tạo đối tượng, tổ chức dữ liệu và hàm cùng nhau (ví dụ: public class Student { String name; int enrollmentYear; }).\n  + Interfaces: Định nghĩa các phương thức cần thiết cho các lớp triển khai, cung cấp một khuôn mẫu cho các lớp (ví dụ: public interface LMSOperations { void enrollStudent(); }).\n  + Enums: Đại diện cho các tập hợp giá trị có tên cố định (ví dụ: enum DaysOfWeek { MONDAY, TUESDAY, ... })."
       },
       {
-        q: "FAQ 5: Các loại toán tử cơ bản trong Java và chức năng cụ thể của chúng?",
-        a: "Java cung cấp hệ thống toán tử đa dạng:\n✔ Toán tử số học (+, -, *, /, %): Dùng để tính toán số học.\n✔ Toán tử quan hệ (==, !=, >, <, >=, <=): So sánh giá trị, trả về boolean.\n✔ Toán tử logic (&&, ||, !): Kết hợp các điều kiện boolean.\n✔ Toán tử gán (=, +=, -=, *=, /=): Thiết lập giá trị mới cho biến.\n✔ Toán tử một ngôi (++, --, !, ~): Tăng/giảm biến hoặc đảo bit.\n✔ Toán tử ba ngôi (condition ? expr1 : expr2): Viết tắt rẽ nhánh điều kiện."
+        q: "FAQ 5: Các loại toán tử (operators) cơ bản trong Java là gì và chức năng của chúng?",
+        a: "Các toán tử là các ký hiệu đặc biệt giúp thực hiện các thao tác trên dữ liệu. Trong Java, chúng bao gồm:\n- **Toán tử số học (Arithmetic operators):** Thực hiện các phép toán số học cơ bản.\n  + (Cộng), - (Trừ), * (Nhân), / (Chia), % (Chia lấy dư).\n  Ví dụ: int result = 10 + 5; // result là 15\n- **Toán tử quan hệ (Relational operators):** Dùng để so sánh hai giá trị hoặc biểu thức, trả về giá trị boolean (true hoặc false).\n  == (Bằng), != (Không bằng), > (Lớn hơn), < (Nhỏ hơn), >= (Lớn hơn hoặc bằng), <= (Nhỏ hơn hoặc bằng).\n  Ví dụ: boolean isEqual = (a == b);\n- **Toán tử logic (Logical operators):** Dùng để kết hợp nhiều điều kiện boolean, trả về kết quả boolean.\n  && (AND logic): true nếu cả hai điều kiện đều true.\n  || (OR logic): true nếu ít nhất một điều kiện là true.\n  ! (NOT logic): Đảo ngược kết quả (true thành false, và ngược lại).\n  Ví dụ: boolean condition = (x > 0 && y < 10);\n- **Toán tử gán (Assignment operators):** Dùng để gán giá trị cho một biến.\n  = (Gán giá trị), += (Cộng và gán), -= (Trừ và gán), *= (Nhân và gán), /= (Chia và gán), %= (Modulus và gán), v.v.\n  Ví dụ: int x = 10; x += 5; // x bây giờ là 15\n- **Toán tử một ngôi (Unary operators):** Chỉ tác động lên một toán hạng duy nhất.\n  + (Dấu cộng), - (Dấu trừ), ++ (Tăng 1), -- (Giảm 1), ! (NOT logic), ~ (Bitwise complement).\n  Ví dụ: int a = 5; a++; // a bây giờ là 6\n- **Toán tử ba ngôi (Ternary operator) / Toán tử điều kiện:** Là một dạng rút gọn của câu lệnh if-else, hoạt động với ba toán quang.\n  Cú pháp: điều kiện ? biểu_thức1 : biểu_thức2;\n  Nếu điều kiện là true thì biểu_thức1 được đánh giá, ngược lại biểu_thức2 được đánh giá.\n  Ví dụ: int max = (a > b) ? a : b;"
       },
       {
-        q: "FAQ 6: Mảng (Array) trong Java hoạt động như thế nào trên khía cạnh bộ nhớ và cách khai báo, khởi tạo?",
-        a: "Mảng trong Java là một đối tượng đặc biệt lưu trữ tập hợp các phần tử cùng kiểu liên tiếp nhau.\n\nHoạt động bộ nhớ:\n- Tên biến mảng nằm trên Stack.\n- Vùng nhớ lưu các phần tử thật nằm liền kề nhau trên Heap.\n- Kích thước mảng cố định ngay khi dùng từ khóa 'new' và không thể co giãn.\n\nKhai báo & Khởi tạo:\n`int[] numbers = new int[5]; // Tạo mảng trống 5 phần tử`\n`int[] scores = {90, 85, 80}; // Khởi tạo nhanh với giá trị sẵn`"
+        q: "FAQ 6: Array (mảng) trong Java là gì và cách khai báo, khởi tạo, truy cập các phần tử của nó?",
+        a: "Mảng trong Java là một cấu trúc dữ liệu cơ bản cho phép lưu trữ nhiều giá trị cùng loại trong một biến duy nhất. Các phần tử của mảng được lưu trữ trong bộ nhớ liền kề và được truy cập bằng một chỉ mục (index), bắt đầu từ 0. Mảng có thể chứa các kiểu dữ liệu nguyên thủy hoặc tham chiếu.\n\n**Khai báo một mảng:**\n- Cú pháp: dataType[] arrayName; hoặc dataType arrayName[];\n- Ví dụ: int[] numbers; hoặc String[] students;\n\n**Khởi tạo một mảng:** Có ba cách phổ biến:\n1. **Khai báo và cấp phát bộ nhớ:** Tạo một mảng với số lượng phần tử cố định nhưng chưa gán giá trị cụ thể. Ví dụ: int[] numbers = new int[5]; // Tạo mảng với 5 phần tử\n2. **Khai báo, cấp phát và gán giá trị:** Khởi tạo mảng với các giá trị ban đầu ngay lập tức. Ví dụ: int[] numbers = {10, 20, 30, 40, 50};\n3. **Gán giá trị từng phần tử:** Cấp phát bộ nhớ trước, sau đó gán giá trị cho từng phần tử một. Ví dụ: int[] numbers = new int[3]; numbers[0] = 5; numbers[1] = 10; numbers[2] = 15;\n\n**Truy cập phần tử mảng:**\n- Sử dụng chỉ mục (index) của phần tử. Chỉ mục bắt đầu từ 0. Ví dụ: System.out.println(numbers[0]); // Truy cập phần tử đầu tiên; numbers[2] = 100; // Thay đổi giá trị của phần tử thứ ba"
       },
       {
-        q: "FAQ 7: Làm thế nào để duyệt qua các phần tử của mảng một chiều và mảng 2 chiều một cách tối ưu?",
-        a: "✔ Mảng 1 chiều:\n- Dùng for-each khi chỉ muốn đọc giá trị mà không quan tâm chỉ số index: `for(int num : numbers) { ... }`\n- Dùng for truyền thống khi cần thao tác với index hoặc sửa đổi giá trị.\n\n✔ Mảng 2 chiều (Ma trận):\n- Phải dùng 2 vòng lặp lồng nhau (nested loop). Vòng ngoài duyệt qua từng hàng (matrix.length), vòng trong duyệt qua từng cột trong hàng đó (matrix[i].length)."
+        q: "FAQ 7: Làm thế nào để lặp (loop) qua các phần tử trong một mảng một chiều và mảng đa chiều trong Java?",
+        a: "Để lặp qua các phần tử của mảng, Java cung cấp các cấu trúc vòng lặp khác nhau:\n\n**Đối với mảng một chiều:**\n- **Sử dụng vòng lặp for truyền thống:**\n  for (int i = 0; i < numbers.length; i++) {\n      System.out.println(numbers[i]);\n  }\n- **Sử dụng vòng lặp for-each (enhanced for loop):** Đơn giản hơn khi bạn chỉ cần truy cập các phần tử mà không cần chỉ mục.\n  for (int num : numbers) {\n      System.out.println(num);\n  }\n\n**Đối với mảng đa chiều (ví dụ: mảng 2D):** Mảng đa chiều là một \"mảng của các mảng\". Trong Java, phổ biến nhất là mảng 2D, thường dùng để biểu diễn bảng hoặc ma trận. Bạn sử dụng vòng lặp lồng nhau (nested loops) để duyệt qua các phần tử.\n- **Duyệt mảng 2D bằng vòng lặp lồng nhau:**\n  int[][] matrix = {\n      {1, 2, 3},\n      {4, 5, 6},\n      {7, 8, 9}\n  };\n  for (int i = 0; i < matrix.length; i++) { // Lặp qua các hàng\n      for (int j = 0; j < matrix[i].length; j++) { // Lặp qua các cột trong hàng hiện tại\n          System.out.print(matrix[i][j] + \" \");\n      }\n      System.out.println(); // Xuống dòng sau mỗi hàng\n  }\n\nLưu ý rằng mảng trong Java có kích thước cố định, ngay cả mảng đa chiều. Tuy nhiên, bạn có thể tạo \"mảng lởm chởm\" (jagged arrays) nơi các hàng có độ dài khác nhau."
       },
       {
-        q: "FAQ 8: Trình bày các phương pháp lập trình tốt nhất (best practices) khi viết mã nguồn Java.",
-        a: "5 nguyên tắc vàng trong phát triển Java:\n1. Đặt tên có nghĩa: Áp dụng camelCase cho phương thức/biến, PascalCase cho tên Lớp, và viết hoa toàn bộ cho hằng số (SNAKE_CASE).\n2. Quản lý tài nguyên triệt để: Sử dụng cấu trúc try-with-resources để tự động giải phóng kết nối database, file stream, tránh rò rỉ bộ nhớ.\n3. Viết bình luận đúng chỗ: Chỉ viết giải thích thuật toán khó, tránh giải thích hiển nhiên.\n4. Đóng gói bảo mật: Luôn đặt thuộc tính là private và kiểm soát qua Getter/Setter.\n5. Tuân thủ quy ước thụt lề chuẩn để mã nguồn nhất quán, dễ đọc."
+        q: "FAQ 8: Các phương pháp hay nhất (best practices) trong lập trình Java là gì?",
+        a: "Tuân thủ các phương pháp hay nhất giúp mã của bạn dễ đọc, dễ bảo trì và dễ hợp tác hơn. Dưới đây là một số khuyến nghị:\n- **Tên có ý nghĩa:** Sử dụng các tên mô tả rõ ràng cho các lớp, phương thức và biến. Điều này giúp tăng cường tính dễ đọc của mã.\n- **Sử dụng bình luận:** Viết bình luận (sử dụng //, /* */, /** */) để giải thích logic phức tạp, mục đích của các phần mã hoặc cung cấp tài liệu.\n- **Thụt lề nhất quán:** Sử dụng thụt lề nhất quán giúp cải thiện khả năng đọc cấu trúc mã.\n- **Quản lý tài nguyên:** Luôn đóng các tài nguyên (như tệp, kết nối cơ sở dữ liệu) khi không sử dụng nữa. Nên sử dụng khối finally hoặc cấu trúc try-with-resources để đảm bảo tài nguyên được đóng ngay cả khi có lỗi.\n- **Tuân thủ quy ước Java:** Tuân thủ các quy ước mã hóa tiêu chuẩn của Java (ví dụ: đặt tên lớp theo kiểu PascalCase, phương thức và biến theo kiểu camelCase) để đảm bảo tính nhất quán và dễ đọc cho bất kỳ ai làm việc với mã của bạn."
       }
     ]
   }

@@ -301,61 +301,8 @@ public class Main {
     output: `HashMap: {A=Đầu, Z=Cuối}\nTreeMap: {A=Đầu, Z=Cuối}`
   },
   {
-    id: 'stack_deque_arraydeque',
-    title: '6. Stack & Deque (Ngăn xếp & Hàng đợi 2 đầu)',
-    type: 'Cấu trúc LIFO & Double-Ended',
-    description: 'Ngăn xếp hoạt động theo nguyên lý LIFO. Cách sử dụng ArrayDeque thay thế lớp Stack lỗi thời.',
-    bulletSections: [
-      {
-        title: "Đặc điểm Ngăn xếp (Stack)",
-        items: [
-          "Hoạt động theo nguyên lý **LIFO** (Last-In First-Out - Vào sau Ra trước).",
-          "Triển khai truyền thống `java.util.Stack` bị coi là lỗi thời và nghẽn hiệu năng do sử dụng đồng bộ hóa chậm."
-        ]
-      },
-      {
-        title: "Triển khai khuyên dùng (ArrayDeque)",
-        items: [
-          "Không đồng bộ hóa (Non-synchronized), chạy đơn luồng cực nhanh.",
-          "Triển khai đầy đủ `Deque` interface làm ngăn xếp cực chuẩn.",
-          "Hiệu năng tối ưu đạt `O(1)` cho thêm/xóa ở đỉnh ngăn xếp."
-        ]
-      }
-    ],
-    comparisonPair: {
-      title: "⚔️ ĐỐI ĐẦU TRỰC DIỆN: ArrayDeque (Stack hiện đại) vs java.util.Stack (Lớp lỗi thời)",
-      items: [
-        { 
-          name: "ArrayDeque (Hiện đại)", 
-          detail: "✔ Cơ chế: Không đồng bộ hóa (Non-synchronized), chạy đơn luồng cực nhanh.\n✔ Thiết kế: Triển khai Deque interface chuẩn chỉnh, tập trung duy nhất vào hàng đợi 2 đầu.\n✔ Hiệu năng: Tốc độ thêm/xóa đạt O(1) tối ưu nhất, không phát sinh vùng nhớ thừa của con trỏ.", 
-          color: "#EBF8EA" 
-        },
-        { 
-          name: "java.util.Stack (Cổ điển lỗi thời)", 
-          detail: "✔ Cơ chế: Đồng bộ hóa (Synchronized) trên mọi phương thức, gây lãng phí tài nguyên CPU ở môi trường đơn luồng.\n✔ Thiết kế: Kế thừa sai lớp Vector (làm lộ các hàm không hợp lệ như get(index) vi phạm nguyên tắc LIFO).\n✔ Hiệu năng: Rất chậm do chi phí locking khóa luồng.", 
-          color: "#FFEBF0" 
-        }
-      ],
-      verdict: "💡 PHÁN QUYẾT: Hãy nói KHÔNG với class java.util.Stack khi viết code Java thực tế. Luôn sử dụng Deque<T> stack = new ArrayDeque<>() để triển khai Ngăn xếp có hiệu năng tối đa và tuân thủ đúng nguyên lý thiết kế hướng đối tượng."
-    },
-    code: `import java.util.ArrayDeque;
-import java.util.Deque;
-
-public class Main {
-    public static void main(String[] args) {
-        Deque<Integer> stack = new ArrayDeque<>();
-        stack.push(10);
-        stack.push(20);
-        
-        System.out.println("Đỉnh Stack (peek): " + stack.peek());
-        System.out.println("Lấy ra đỉnh (pop): " + stack.pop());
-    }
-}`,
-    output: `Đỉnh Stack (peek): 20\nLấy ra đỉnh (pop): 20`
-  },
-  {
     id: 'collections_practice',
-    title: '7. Ứng dụng thực tế',
+    title: '6. Ứng dụng thực tế',
     type: 'Bảng tra cứu thực hành',
     description: 'Bảng ánh xạ các lớp JCF phổ biến với các kịch bản thực tế tương ứng.',
     builtInMethods: [
@@ -377,7 +324,7 @@ public class Main {
   },
   {
     id: 'collections_summary',
-    title: '8. Tóm tắt nhanh',
+    title: '7. Tóm tắt nhanh',
     type: 'Bảng tổng hợp JCF',
     description: 'Bảng tổng hợp nhanh đặc điểm chính và các triển khai tiêu biểu của 4 Interface lớn.',
     summaryTable: {
@@ -398,73 +345,122 @@ public class Main {
   },
   {
     id: 'collections_quizzes',
-    title: '9. Câu hỏi Ôn tập & Trắc nghiệm (Collections Quizzes)',
+    title: '8. Câu hỏi Ôn tập & Trắc nghiệm (Collections Quizzes)',
     type: 'Luyện tập & Tự kiểm tra',
     description: 'Tuyển tập 10 câu hỏi ngắn gọn tự luận kiểm tra kiến thức về các đặc trưng cốt lõi của List, Set, Queue, Map, so sánh hiệu năng và 5 câu tự luận tư duy sâu.',
     quizzes: [
       {
-        q: "1. Mô tả sự khác biệt chính giữa ArrayList và LinkedList về hiệu suất cho các thao tác chèn/xóa ở giữa danh sách.",
+        q: "Mô tả sự khác biệt chính giữa ArrayList và LinkedList về hiệu suất cho các thao tác chèn/xóa ở giữa danh sách.",
         a: "ArrayList chậm hơn khi chèn/xóa ở giữa (O(n)) vì bắt buộc phải dịch chuyển các phần tử phía sau trong mảng bộ nhớ liền kề. LinkedList nhanh hơn (O(1)) vì chỉ cần cập nhật lại liên kết địa chỉ của các nút (nodes) kề cạnh mà không cần dịch chuyển dữ liệu vật lý."
       },
       {
-        q: "2. Tại sao HashSet được ưa chuộng hơn TreeSet khi bạn cần hiệu suất nhanh nhất cho các thao tác cơ bản và thứ tự không quan trọng?",
+        q: "Tại sao HashSet được ưa chuộng hơn TreeSet khi bạn cần hiệu suất nhanh nhất cho các thao tác cơ bản và thứ tự không quan trọng?",
         a: "Vì HashSet sử dụng Bảng băm (Hash Table), mang lại tốc độ add/remove/contains trung bình siêu tốc O(1). TreeSet sử dụng cấu trúc cây Đỏ-Đen tự cân bằng phức tạp hơn, có tốc độ O(log n) chậm hơn HashSet."
       },
       {
-        q: "3. Giải thích mục đích chính của giao diện Queue trong Khung Bộ sưu tập Java và cung cấp một ví dụ về trường hợp sử dụng.",
+        q: "Giải thích mục đích chính của giao diện Queue trong Khung Bộ sưu tập Java và cung cấp một ví dụ về trường hợp sử dụng.",
         a: "Mục đích chính của Queue là lưu trữ các phần tử tạm thời trước khi xử lý theo một thứ tự xác định (thường là First-In, First-Out - FIFO). Ví dụ điển hình là hàng đợi in ấn (Print Spooler), tài liệu nào gửi đến máy in trước sẽ được in ra trước."
       },
       {
-        q: "4. Giao diện Map khác với giao diện Collection như thế nào về cách lưu trữ dữ liệu?",
+        q: "Giao diện Map khác với giao diện Collection như thế nào về cách lưu trữ dữ liệu?",
         a: "Map lưu trữ dữ liệu dưới dạng cặp khóa-giá trị (Key-Value) với các khóa là duy nhất và không kế thừa giao diện Collection. Trong khi đó, Collection lưu trữ một nhóm các đối tượng đơn lẻ và là cha trực tiếp của List, Set, Queue."
       },
       {
-        q: "5. Giải thích khi nào nên sử dụng HashMap thay vì TreeMap và những ưu điểm mà HashMap mang lại trong trường hợp đó.",
+        q: "Giải thích khi nào nên sử dụng HashMap thay vì TreeMap và những ưu điểm mà HashMap mang lại trong trường hợp đó.",
         a: "Nên sử dụng HashMap khi bạn chỉ cần lưu trữ và tra cứu thông tin theo khóa với tốc độ tối đa O(1) và hoàn toàn không quan tâm đến thứ tự sắp xếp của các khóa. HashMap tối ưu hóa tốc độ nhờ bảng băm và cho phép chứa một khóa null."
       },
       {
-        q: "6. Nếu bạn cần lưu trữ một tập hợp các số nguyên duy nhất và muốn chúng được tự động sắp xếp, bạn sẽ sử dụng triển khai Set nào và tại sao?",
+        q: "Nếu bạn cần lưu trữ một tập hợp các số nguyên duy nhất và muốn chúng được tự động sắp xếp, bạn sẽ sử dụng triển khai Set nào và tại sao?",
         a: "Bạn nên sử dụng TreeSet. Vì TreeSet triển khai SortedSet, tự động loại bỏ các phần tử trùng lặp và liên tục duy trì thứ tự sắp xếp tự nhiên tăng dần (1, 2, 3...) của các phần tử nhờ cấu trúc cây nhị phân cân bằng bên dưới."
       },
       {
-        q: "7. Mô tả cách PriorityQueue xác định phần tử nào là \"đầu\" của hàng đợi và tại sao nó không phải là hàng đợi FIFO nghiêm ngặt.",
+        q: "Mô tả cách PriorityQueue xác định phần tử nào là \"đầu\" của hàng đợi và tại sao nó không phải là hàng đợi FIFO nghiêm ngặt.",
         a: "PriorityQueue xác định phần tử đầu hàng đợi dựa trên độ ưu tiên (giá trị nhỏ nhất mặc định của Min-Heap hoặc qua Comparator tùy chọn). Nó không tuân thủ FIFO nghiêm ngặt vì phần tử được thêm vào sau nhưng có độ ưu tiên cao hơn vẫn sẽ được vọt lên đứng đầu và được xử lý trước."
       },
       {
-        q: "8. Trình bày hai đặc điểm chính của Arrays khiến chúng khác biệt đáng kể so với ArrayList trong Java.",
-        a: "1) Arrays có kích thước cố định cứng nhắc ngay khi tạo và không thể co giãn. ArrayList có thể tự động phình to kích thước khi đầy.\n2) Arrays có thể lưu trữ trực tiếp kiểu dữ liệu nguyên thủy (primitive như int, char). ArrayList chỉ có thể lưu trữ kiểu đối tượng tham chiếu (phải dùng Wrapper class như Integer, Character)."
+        q: "Trình bày hai đặc điểm chính của Arrays khiến chúng khác biệt đáng kể so với ArrayList trong Java.",
+        a: "Hai đặc điểm chính của Arrays khiến chúng khác biệt đáng kể so với ArrayList là kích thước cố định và khả năng lưu trữ các phần tử cùng kiểu dữ liệu nguyên thủy. ArrayList là cấu trúc dữ liệu động có thể thay đổi kích thước và lưu trữ các đối tượng."
       },
       {
-        q: "9. Giao diện Collection trong Khung Bộ sưu tập Java đóng vai trò gì? Liệt kê hai giao diện con trực tiếp của nó.",
+        q: "Giao diện Collection trong Khung Bộ sưu tập Java đóng vai trò gì? Liệt kê hai giao diện con trực tiếp của nó.",
         a: "Collection đóng vai trò làm giao diện gốc chung, định nghĩa các phương thức thao tác tập hợp cơ bản nhất cho toàn bộ framework (ngoại trừ Map). Hai giao diện con trực tiếp của nó là List và Set (còn có Queue)."
       },
       {
-        q: "10. Tại sao các bộ sưu tập (Collections) được coi là \"cấu trúc dữ liệu động\"?",
+        q: "Tại sao các bộ sưu tập (Collections) được coi là \"cấu trúc dữ liệu động\"?",
         a: "Vì chúng có khả năng tự động quản lý vùng nhớ và linh hoạt thay đổi kích thước sức chứa (tự cấp phát thêm RAM khi chèn thêm phần tử hoặc thu hẹp khi xóa đi) một cách tự động trong thời gian chạy mà không cần lập trình viên can thiệp thủ công."
       }
     ],
     essays: [
       {
-        q: "1. So sánh và đối chiếu các trường hợp sử dụng, ưu điểm và nhược điểm của ArrayList và LinkedList. Hãy phân tích độ phức tạp thời gian cho các thao tác phổ biến.",
+        q: "So sánh và đối chiếu các trường hợp sử dụng, ưu điểm và nhược điểm của ArrayList và LinkedList. Hãy phân tích độ phức tạp thời gian cho các thao tác phổ biến.",
         hint: "ArrayList tối ưu get(index) O(1) nhưng kém ở add/remove ở giữa O(N). LinkedList tối ưu add/remove ở hai đầu O(1) nhưng kém ở truy xuất ngẫu nhiên get(index) O(N)."
       },
       {
-        q: "2. Thảo luận sâu về vai trò của Set interface. So sánh chi tiết cấu trúc dữ liệu bên dưới và hiệu năng của HashSet (bảng băm) vs TreeSet (cây đỏ đen).",
+        q: "Thảo luận sâu về vai trò của Set interface. So sánh chi tiết cấu trúc dữ liệu bên dưới và hiệu năng của HashSet (bảng băm) vs TreeSet (cây đỏ đen).",
         hint: "HashSet dùng HashMap bên dưới nên chứa phần tử không thứ tự, tốc độ trung bình O(1). TreeSet dùng TreeMap bên dưới duy trì thứ tự sắp xếp tăng dần, tốc độ O(log N) do liên tục phải cân bằng cây nhị phân."
       },
       {
-        q: "3. Phân tích giao diện Map. So sánh chi tiết HashMap vs TreeMap về mặt thứ tự lưu trữ, hiệu năng truy xuất và khả năng chấp nhận phần tử null.",
+        q: "Phân tích giao diện Map. So sánh chi tiết HashMap vs TreeMap về mặt thứ tự lưu trữ, hiệu năng truy xuất và khả năng chấp nhận phần tử null.",
         hint: "HashMap không thứ tự, tốc độ O(1), cho phép 1 khóa null. TreeMap sắp xếp khóa tăng dần, tốc độ O(log N), hoàn toàn cấm khóa null (gây NullPointerException do cần so sánh so khớp khóa)."
       },
       {
-        q: "4. Phân tích tầm quan trọng của giao diện Queue trong thiết kế hệ thống. So sánh đặc trưng vận hành của LinkedList-Queue và PriorityQueue.",
-        hint: "LinkedList-Queue tuân thủ FIFO nghiêm ngặt phù hợp cho hệ thống tin nhắn SMS, hàng đợi tác vụ. PriorityQueue sắp xếp theo độ ưu tiên phù hợp cho giải thuật Dijkstra tìm đường ngắn nhất, lập lịch CPU."
+        q: "Phân tích tầm quan trọng của giao diện Queue trong các ứng dụng thực tế. So sánh cách LinkedList và PriorityQueue có thể được sử dụng để triển khai Queue, chỉ ra các đặc điểm hoạt động khác nhau của chúng và các trường hợp sử dụng phù hợp.",
+        hint: "Giao diện Queue trong Java được thiết kế để chứa các phần tử trước khi xử lý, thường tuân theo nguyên tắc FIFO. LinkedList là cấu trúc dữ liệu tuyến tính lý tưởng cho FIFO hàng đợi chuẩn, chạy O(1) chèn/xóa và cho phép null. PriorityQueue dựa trên Min-Heap chạy O(log n), các phần tử được lấy ra theo độ ưu tiên, cấm null."
       },
       {
-        q: "5. Trình bày triết lý thiết kế đằng sau Java Collections Framework. Khái niệm Generics giúp tăng tính an toàn kiểu dữ liệu (Type-Safety) như thế nào?",
+        q: "Trình bày triết lý thiết kế đằng sau Java Collections Framework. Khái niệm Generics giúp tăng tính an toàn kiểu dữ liệu (Type-Safety) như thế nào?",
         hint: "Generics ngăn chặn lỗi runtime ClassCastException bằng cách bắt buộc kiểm tra kiểu dữ liệu ngay tại thời điểm biên dịch (Compile-time), loại bỏ việc ép kiểu thủ công."
       }
     ]
+  },
+  {
+    id: 'collections_glossary',
+    title: '9. Thuật ngữ cốt lõi (Collections Glossary)',
+    type: 'Glossary',
+    description: 'Các thuật ngữ và khái niệm cốt lõi của Khung Bộ sưu tập Java giúp xây dựng nền tảng vững chắc.',
+    bulletSections: [
+      {
+        title: "Khái niệm Cơ bản (Core Concepts)",
+        items: [
+          "**Collections (Bộ sưu tập)**: Một framework trong Java cung cấp một kiến trúc để lưu trữ và thao tác một nhóm các đối tượng.",
+          "**Dynamic Data Structures (Cấu trúc dữ liệu động)**: Cấu trúc dữ liệu có thể tăng hoặc giảm kích thước khi cần thiết trong thời gian chạy.",
+          "**Generics**: Một tính năng trong Java cho phép các lớp, giao diện và phương thức hoạt động với các kiểu khác nhau mà không cần viết lại mã.",
+          "**Iterable**: Giao diện gốc trong hệ thống phân cấp Khung Bộ sưu tập Java, cho phép các đối tượng được lặp lại (ví dụ: trong vòng lặp for-each).",
+          "**Collection**: Giao diện cơ sở trong Khung Bộ sưu tập Java cho các nhóm đối tượng.",
+          "**Array (Mảng)**: Một cấu trúc dữ liệu có kích thước cố định lưu trữ các phần tử cùng kiểu dữ liệu, được truy cập bằng chỉ mục.",
+          "**FIFO (First-In, First-Out)**: Một nguyên tắc xử lý trong đó phần tử được thêm vào đầu tiên cũng là phần tử được xử lý hoặc lấy ra đầu tiên.",
+          "**LIFO (Last-In, First-Out)**: Một nguyên tắc xử lý trong đó phần tử được thêm vào cuối cùng cũng là phần tử được xử lý hoặc lấy ra đầu tiên."
+        ]
+      },
+      {
+        title: "Các Interface & Triển khai chính (Interfaces & Implementations)",
+        items: [
+          "**List**: Một giao diện con của Collection đại diện cho một tập hợp có thứ tự, cho phép trùng lặp và truy cập theo chỉ mục.",
+          "**Set**: Một giao diện con của Collection đại diện cho một tập hợp không có thứ tự mà không cho phép các phần tử trùng lặp.",
+          "**Queue**: Một giao diện con của Collection được thiết kế để giữ các phần tử trước khi xử lý, thường tuân theo nguyên tắc FIFO.",
+          "**Map**: Một giao diện trong Java lưu trữ dữ liệu dưới dạng các cặp khóa-giá trị, trong đó khóa phải là duy nhất. Không kế thừa từ Collection.",
+          "**ArrayList**: Một triển khai của giao diện List sử dụng một mảng có thể thay đổi kích thước. Tốt cho truy cập ngẫu nhiên.",
+          "**LinkedList**: Một triển khai của giao diện List và Queue sử dụng một danh sách liên kết đôi. Tốt cho các thao tác chèn/xóa ở các đầu.",
+          "**HashSet**: Một triển khai của giao diện Set sử dụng bảng băm để lưu trữ. Cung cấp hiệu suất O(1) trung bình cho các thao tác cơ bản và không duy trì thứ tự.",
+          "**TreeSet**: Một triển khai của giao diện Set sử dụng cây tìm kiếm nhị phân cân bằng (cây Đỏ-Đen). Lưu trữ các phần tử theo thứ tự được sắp xếp và có hiệu suất O(log n).",
+          "**PriorityQueue**: Một triển khai của giao diện Queue sử dụng cấu trúc dữ liệu min-heap. Các phần tử được sắp xếp dựa trên độ ưu tiên của chúng, không phải thứ tự chèn.",
+          "**HashMap**: Một triển khai của giao diện Map sử dụng bảng băm. Cung cấp hiệu suất O(1) trung bình cho các thao tác cơ bản và không duy trì thứ tự.",
+          "**TreeMap**: Một triển khai của giao diện Map sử dụng cây tìm kiếm nhị phân cân bằng (cây Đỏ-Đen). Lưu trữ các cặp khóa-giá trị theo thứ tự sắp xếp của khóa và có hiệu suất O(log n)."
+        ]
+      },
+      {
+        title: "Cấu trúc Dữ liệu & Cơ chế (Data Structures & Mechanisms)",
+        items: [
+          "**Hash Table (Bảng băm)**: Một cấu trúc dữ liệu sử dụng hàm băm để tính toán chỉ mục thành một mảng vị trí hoặc \"bucket\" từ đó giá trị mong muốn có thể được tìm thấy.",
+          "**Binary Search Tree (Cây tìm kiếm nhị phân)**: Một cấu trúc dữ liệu cây trong đó mỗi nút có nhiều nhất hai nút con, và tất cả các nút con ở bên trái nhỏ hơn nút cha, trong khi tất cả các nút con ở bên phải lớn hơn.",
+          "**Red-Black Tree (Cây Đỏ-Đen)**: Một loại cây tìm kiếm nhị phân tự cân bằng, được sử dụng trong TreeSet và TreeMap để đảm bảo hiệu suất O(log n) ngay cả trong trường hợp xấu nhất.",
+          "**Comparator (Bộ so sánh)**: Một giao diện trong Java được sử dụng để định nghĩa thứ tự sắp xếp tùy chỉnh cho các đối tượng.",
+          "**hashCode() và equals()**: Các phương thức được sử dụng bởi các cấu trúc dữ liệu dựa trên băm (như HashSet, HashMap) để xác định tính duy nhất và so sánh các đối tượng."
+        ]
+      }
+    ],
+    code: `// Chúc bạn học tốt! Nắm vững các thuật ngữ này sẽ giúp bạn dễ dàng vượt qua các câu hỏi phỏng vấn Collections.`,
+    output: `JCF Glossary loaded.`
   },
   {
     id: 'collections_faqs',
@@ -490,7 +486,7 @@ public class Main {
       },
       {
         q: "5. Khái niệm hàng đợi (Queue) trong Java là gì và PriorityQueue khác với LinkedList (khi dùng làm Queue) như thế nào?",
-        a: "Queue là hàng đợi giữ phần tử trước khi xử lý.\n- LinkedList Queue: FIFO nghiêm ngặt (ai vào trước xử lý trước), tốn O(1).\n- PriorityQueue: Min-heap, không FIFO. Phần tử có độ ưu tiên cao nhất (nhỏ nhất mặc định) sẽ được lấy ra trước, tốn O(log n)."
+        a: "Giao diện Queue trong Java được thiết kế để chứa các phần tử trước khi xử lý, thường tuân theo nguyên tắc FIFO (First-In, First-Out). Các phương thức chính bao gồm add(), offer(), remove(), poll(), element(), và peek().\n- LinkedList (khi dùng làm Queue):\n  + LinkedList triển khai giao diện Queue và có thể được sử dụng như một hàng đợi FIFO.\n  + Hiệu quả cho việc thêm vào cuối và xóa từ đầu.\n  + Các phần tử được xử lý theo thứ tự mà chúng được thêm vào (First-In, First-Out).\n- PriorityQueue:\n  + Triển khai: Sử dụng cấu trúc dữ liệu min-heap.\n  + Đặc điểm: Các phần tử được sắp xếp dựa trên thứ tự tự nhiên của chúng hoặc một Comparator tùy chỉnh. Phần tử đứng đầu hàng đợi là phần tử nhỏ nhất theo thứ tự sắp xếp.\n  + Không nghiêm ngặt FIFO: Các phần tử có độ ưu tiên cao hơn (giá trị nhỏ hơn theo mặc định) sẽ được lấy ra trước, bất kể thời điểm chúng được thêm vào.\n  + Trường hợp sử dụng: Khi các phần tử cần được xử lý dựa trên độ ưu tiên, không chỉ dựa vào thứ tự đến."
       },
       {
         q: "6. Sự khác biệt giữa HashMap và TreeMap là gì?",

@@ -340,7 +340,7 @@ export default function ContentArea({ topic, onPrevious, onNext, prevTopicTitle,
 
         {topic.summaryTable && (
           <div className="section" style={{ marginTop: '24px' }}>
-            <h3>Tóm tắt nhanh (JCF Summary)</h3>
+            <h3>{topic.summaryTableTitle || 'Tóm tắt nhanh'}</h3>
             <div style={{ overflowX: 'auto', marginTop: '12px' }}>
               <table className="bg-white" style={{ 
                 width: '100%', 

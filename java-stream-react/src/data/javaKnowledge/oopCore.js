@@ -1,7 +1,46 @@
 export const oopCore = [
   {
+    id: 'intro_oop',
+    title: '1. Giới thiệu về OOP (Introduction to OOP)',
+    type: 'Cơ bản',
+    description: 'Tìm hiểu về triết lý Lập trình hướng đối tượng (OOP), các lợi ích cốt lõi và so sánh trực quan giữa OOP với Lập trình thủ tục.',
+    interviewSignals: 'Phân biệt mô hình lập trình thủ tục (Procedural) và lập trình hướng đối tượng (OOP) về mặt cấu trúc dữ liệu và khả năng mở rộng.',
+    practiceProblems: 'Tìm các ví dụ thực tế xung quanh bạn (Ví dụ: Xe cộ, Con người, Tài khoản) và phân tích thuộc tính/hành vi của chúng.',
+    builtInMethods: [
+      'OOP là gì? - Mô hình lập trình dựa trên khái niệm đối tượng.',
+      'Tính mô-đun (Modularity) - Tách biệt bài toán thành các lớp.',
+      'Tái sử dụng (Reusability) - Khả năng sử dụng lại mã nguồn.',
+      'Dễ bảo trì (Maintainability) - Cấu trúc rõ ràng, dễ mở rộng.'
+    ],
+    memoryTrick: '🧠 Hãy nghĩ về chiếc Xe hơi: Các thông số như hãng xe, màu sắc là dữ liệu (Trường/Thuộc tính); còn các hành động như khởi động, phanh xe là hành vi (Phương thức).',
+    code: `// So sánh tư duy lập trình:
+// 1. Thủ tục (Procedural): dữ liệu và hàm tách rời
+String carMake = "Toyota";
+void startCar(String make) {
+    System.out.println("Khởi động xe: " + make);
+}
+
+// 2. Hướng đối tượng (OOP): gộp chung dữ liệu & hành vi vào Class
+class Car {
+    String make = "Toyota";
+    void start() {
+        System.out.println("Khởi động xe: " + make);
+    }
+}`,
+    summaryTableTitle: 'So sánh OOP & Lập trình Thủ tục',
+    summaryTable: {
+      headers: ['Tiêu chí', 'Lập trình thủ tục', 'Lập trình hướng đối tượng'],
+      rows: [
+        ['Trọng tâm', 'Hàm/thủ tục, các bước thực thi', 'Đối tượng, dữ liệu + hành vi'],
+        ['Tổ chức dữ liệu', 'Dữ liệu và hàm tách biệt', 'Dữ liệu và phương thức đóng gói chung'],
+        ['Thiết kế', 'Từ trên xuống (Top-down)', 'Từ dưới lên (Bottom-up)'],
+        ['Khả năng mở rộng', 'Khó quản lý khi hệ thống lớn', 'Quản lý tốt nhờ tính mô-đun']
+      ]
+    }
+  },
+  {
     id: 'class_object',
-    title: '1. Lớp & Đối tượng (Class & Object)',
+    title: '2. Lớp & Đối tượng (Class & Object)',
     type: 'Cơ bản',
     description: 'Khái niệm nền tảng nhất của OOP. Lớp (Class) là bản thiết kế, định nghĩa các thuộc tính (dữ liệu) và hành vi (phương thức). Đối tượng (Object) là thực thể thực tế được tạo ra từ bản thiết kế đó.',
     interviewSignals: 'Phân biệt sự khác nhau giữa Class (Bản vẽ trên giấy) và Object (Ngôi nhà thực tế có địa chỉ cụ thể trên bộ nhớ RAM).',
@@ -13,36 +52,36 @@ export const oopCore = [
     ],
     memoryTrick: '🧠 Hãy tưởng tượng: Class giống như chiếc KHUÔN LÀM BÁNH (chỉ định hình dạng, kích cỡ chiếc bánh). Còn Object chính là những CHIẾC BÁNH THẬT được đúc ra từ khuôn đó (mỗi chiếc bánh có thể có vị dâu, vị socola khác nhau).',
     code: `// 1. Tạo Lớp (Class) - Bản thiết kế
-class Cake {
-    String flavor; // Thuộc tính (Dữ liệu)
+class Car {
+    String make;
+    String model;
+    int year;
 
-    void eat() { // Hành vi (Phương thức)
-        System.out.println("Măm măm chiếc bánh vị " + flavor + "! Ngon tuyệt!");
+    void start() {
+        System.out.println("Khởi động xe: " + make + " " + model + " (" + year + ")");
     }
 }
 
 public class Main {
     public static void main(String[] args) {
         // 2. Tạo Đối tượng (Object) từ Lớp bằng từ khóa 'new'
-        Cake strawberryCake = new Cake();
-        strawberryCake.flavor = "Dâu Tây"; // Gán giá trị
-        
-        Cake chocolateCake = new Cake();
-        chocolateCake.flavor = "Socola"; // Gán giá trị khác
+        Car myCar = new Car();
+        myCar.make = "Toyota";
+        myCar.model = "Camry";
+        myCar.year = 2023;
         
         // 3. Thực thi hành động
-        strawberryCake.eat();
-        chocolateCake.eat();
+        myCar.start();
     }
 }`,
-    output: `Măm măm chiếc bánh vị Dâu Tây! Ngon tuyệt!\nMăm măm chiếc bánh vị Socola! Ngon tuyệt!`
+    output: `Khởi động xe: Toyota Camry (2023)`
   },
   {
     id: 'encapsulation',
-    title: '2. Tính Đóng Gói (Encapsulation)',
+    title: '3. Tính Đóng Gói (Encapsulation)',
     type: 'Bảo mật dữ liệu',
     description: 'Nguyên lý che giấu thông tin nhạy cảm bên trong đối tượng bằng cách đặt thuộc tính là private. Chỉ cho phép đọc/ghi dữ liệu một cách an toàn thông qua các cổng kiểm soát công khai: Getters (lấy ra) và Setters (ghi vào).',
-    interviewSignals: 'Tại sao không nên để thuộc tính public? (Vì bên ngoài sẽ sửa bừa bãi dữ liệu sai nghiệp vụ). Cách sử dụng Getter/Setter để kiểm soát dữ liệu.',
+    interviewSignals: 'Access Modifiers: private (chỉ trong lớp), public (mọi nơi), protected (trong lớp, lớp con, cùng gói), default (trong cùng gói). Dùng Getters/Setters để kiểm soát dữ liệu.',
     practiceProblems: 'Thiết kế lớp BankAccount (tài khoản ngân hàng) bảo vệ số dư không bị gán số âm.',
     builtInMethods: [
       'private - Từ khóa giấu kín thuộc tính, chỉ trong lớp xem được',
@@ -51,79 +90,77 @@ public class Main {
       'setTenThuocTinh(giaTri) - Phương thức cập nhật dữ liệu kèm kiểm tra điều kiện'
     ],
     memoryTrick: '🧠 Tính đóng gói giống như một CHIẾC TỦ ĐỒ SIÊU THỊ. Bạn không thể tự tiện thò tay lấy đồ của người khác (private). Bạn bắt buộc phải đưa vé quét/nhập mật mã (Getter/Setter) cho tủ mở ra một cách hợp lệ.',
-    code: `class BankAccount {
-    private double balance; // private: giấu kín số dư, chặn sửa bừa bãi
+    code: `class Car {
+    private String make; // private: ẩn thông tin hãng xe
 
-    // GETTER: Cho phép xem số dư một cách an toàn
-    public double getBalance() {
-        return this.balance;
+    // GETTER: Cho phép xem hãng xe một cách an toàn
+    public String getMake() {
+        return this.make;
     }
 
-    // SETTER: Cho phép nạp tiền nhưng bắt buộc phải kiểm tra điều kiện
-    public void deposit(double amount) {
-        if (amount > 0) {
-            this.balance += amount;
-            System.out.println("Nạp thành công: +" + amount + " VND");
+    // SETTER: Cho phép cập nhật hãng xe kèm xác thực đầu vào
+    public void setMake(String make) {
+        if (make != null && !make.isEmpty()) {
+            this.make = make;
         } else {
-            System.out.println("Số tiền nạp phải lớn hơn 0!");
+            System.out.println("Hãng xe không hợp lệ!");
         }
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount();
-        // account.balance = -999999; // ❌ Bị lỗi biên dịch ngay! Không cho truy cập trực tiếp
-
-        account.deposit(500000); //  Đúng quy trình
-        System.out.println("Số dư hiện tại: " + account.getBalance() + " VND");
+        Car myCar = new Car();
+        // myCar.make = "Toyota"; // ❌ Bị lỗi biên dịch ngay! Không cho truy cập trực tiếp
+        
+        myCar.setMake("Toyota"); // ✅ Đúng quy trình
+        System.out.println("Hãng xe: " + myCar.getMake());
     }
 }`,
-    output: `Nạp thành công: +500000.0 VND\nSố dư hiện tại: 500000.0 VND`
+    output: `Hãng xe: Toyota`
   },
   {
     id: 'constructors',
-    title: '3. Hàm Khởi Tạo (Constructors)',
+    title: '4. Hàm Khởi Tạo (Constructors)',
     type: 'Khởi tạo đối tượng',
     description: 'Hàm đặc biệt cùng tên với Class, không có kiểu trả về, tự động chạy ngay khi đối tượng được sinh ra bằng từ khóa new. Dùng để cài đặt các giá trị ban đầu cho đối tượng.',
     interviewSignals: 'Nạp chồng Constructor là gì? Khác biệt giữa Constructor mặc định (Default) và Constructor có tham số.',
-    practiceProblems: 'Viết Class SmartPhone có các Constructor cài đặt thương hiệu và dung lượng bộ nhớ khác nhau.',
+    practiceProblems: 'Viết Class Dog có các Constructor mặc định và có tham số để thiết lập tên và tuổi.',
     builtInMethods: [
       'this(...) - Gọi constructor khác trong cùng class',
       'super(...) - Gọi constructor của lớp cha'
     ],
     memoryTrick: '🧠 Constructor giống như các BƯỚC THIẾT LẬP BAN ĐẦU khi bạn vừa mua điện thoại mới (chọn Ngôn ngữ, Wifi, Nhập tên). Thiết lập xong máy mới sẵn sàng hoạt động.',
-    code: `class SmartPhone {
-    String brand;
-    int storage; // GB
+    code: `class Dog {
+    String name;
+    int age;
 
     // 1. Constructor mặc định (Không tham số)
-    public SmartPhone() {
-        this.brand = "Chưa biết";
-        this.storage = 128; // Mặc định 128GB
+    public Dog() {
+        this("Unknown", 0); // Gọi constructor có tham số bên dưới
     }
 
     // 2. Constructor có tham số (Nạp chồng - Overloading)
-    public SmartPhone(String brand, int storage) {
-        this.brand = brand;
-        this.storage = storage;
+    public Dog(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        SmartPhone phone1 = new SmartPhone(); // Chạy Constructor 1
-        SmartPhone phone2 = new SmartPhone("Apple", 256); // Chạy Constructor 2
+        Dog dog1 = new Dog(); // Chạy Constructor mặc định
+        Dog dog2 = new Dog("Alaska", 3); // Chạy Constructor có tham số
         
-        System.out.println("Phone 1: " + phone1.brand + " - " + phone1.storage + "GB");
-        System.out.println("Phone 2: " + phone2.brand + " - " + phone2.storage + "GB");
+        System.out.println("Dog 1: " + dog1.name + " - " + dog1.age + " tuổi");
+        System.out.println("Dog 2: " + dog2.name + " - " + dog2.age + " tuổi");
     }
 }`,
-    output: `Phone 1: Chưa biết - 128GB\nPhone 2: Apple - 256GB`
+    output: `Dog 1: Unknown - 0 tuổi\nDog 2: Alaska - 3 tuổi`
   },
   {
     id: 'inheritance_polymorphism',
-    title: '4. Kế Thừa & Đa Hình (Inheritance & Polymorphism)',
+    title: '5. Kế Thừa & Đa Hình (Inheritance & Polymorphism)',
     type: 'Tái sử dụng & Linh hoạt',
     description: 'Kế thừa (Inheritance): Lớp con nhận lại các thuộc tính và hành vi của lớp cha bằng từ khóa extends. Đa hình (Polymorphism): Lớp con có thể định nghĩa lại (Ghi đè - Override) hành vi nhận từ cha để hoạt động theo cách riêng của mình.',
     interviewSignals: 'Phân biệt Overloading (Nạp chồng - Cùng class, khác tham số) và Overriding (Ghi đè - Khác class có quan hệ cha-con, cùng chữ ký hàm).',
@@ -168,7 +205,7 @@ public class Main {
   },
   {
     id: 'abstraction',
-    title: '5. Tính Trừu Tượng (Abstraction)',
+    title: '6. Tính Trừu Tượng (Abstraction)',
     type: 'Đơn giản hóa hệ thống',
     description: 'Lược bỏ những chi tiết kỹ thuật phức tạp bên trong, chỉ cung cấp cho người dùng một giao diện điều khiển đơn giản. Trong Java, được thể hiện thông qua Abstract Class (Lớp trừu tượng) hoặc Interface (Giao diện).',
     interviewSignals: 'Phân biệt sự khác nhau giữa Abstract Class (vẫn có thể chứa biến và hàm có thân) và Interface (chỉ định nghĩa hành vi mẫu, không chứa trạng thái).',
@@ -201,8 +238,55 @@ public class Main {
     output: `Mở Tivi LED: Kết nối cổng HDMI, bật đèn nền...`
   },
   {
+    id: 'oop_glossary',
+    title: '7. Thuật ngữ cốt lõi (OOP Basics Glossary)',
+    type: 'Glossary',
+    description: 'Bảng tra cứu nhanh các thuật ngữ cốt lõi về lập trình hướng đối tượng (OOP), các bộ sửa đổi truy cập và cơ chế khởi tạo đối tượng trong Java.',
+    bulletSections: [
+      {
+        title: 'Khái niệm OOP Nền tảng (Core OOP Concepts)',
+        items: [
+          '**Object-Oriented Programming (OOP) (Lập trình hướng đối tượng):** Mô hình lập trình dựa trên khái niệm "đối tượng" chứa dữ liệu (thuộc tính) và hành vi (phương thức).',
+          '**Class (Lớp):** Bản thiết kế hoặc khuôn mẫu định nghĩa cấu trúc dữ liệu và hành vi chung cho các đối tượng được tạo ra từ nó.',
+          '**Object (Đối tượng):** Một thể hiện cụ thể (instance) của một lớp, chiếm không gian trong bộ nhớ Heap và có dữ liệu riêng biệt.',
+          '**Instantiation (Khởi tạo):** Quá trình tạo một đối tượng cụ thể từ một lớp bằng từ khóa `new`.',
+          '**Instance (Thể hiện):** Một đối tượng cụ thể được tạo từ lớp; một bản sao thực tế của bản thiết kế lớp.',
+          '**Blueprint (Bản thiết kế):** Cách ví von mô tả lớp, định nghĩa cấu trúc và hành vi cho tất cả các đối tượng.',
+          '**Programming Paradigm (Mô hình lập trình):** Phong cách hoặc cách tiếp cận cơ bản để thiết kế và viết mã nguồn (ví dụ: thủ tục, hướng đối tượng).'
+        ]
+      },
+      {
+        title: 'Thành phần Lớp & Đóng gói (Class Members & Encapsulation)',
+        items: [
+          '**Attributes (Thuộc tính):** Dữ liệu mà một đối tượng sở hữu, định nghĩa trạng thái của đối tượng (còn gọi là trường hoặc biến thể hiện).',
+          '**Fields (Trường):** Các biến được khai báo bên trong một lớp để lưu trữ trạng thái của đối tượng.',
+          '**Behavior (Hành vi):** Các hành động hoặc thao tác mà đối tượng có thể thực hiện, thể hiện qua các phương thức.',
+          '**Methods (Phương thức):** Các hàm định nghĩa bên trong lớp để xử lý dữ liệu và thực hiện hành vi của đối tượng.',
+          '**Encapsulation (Đóng gói):** Nguyên tắc gộp dữ liệu và phương thức xử lý vào một lớp, đồng thời che giấu chi tiết cài đặt nội bộ.',
+          '**Data Hiding (Ẩn dữ liệu):** Khía cạnh đóng gói giúp ẩn chi tiết biến nội bộ khỏi truy cập trực tiếp từ bên ngoài bằng `private`.',
+          '**Access Modifiers (Bộ sửa đổi truy cập):** Các từ khóa (`private`, `public`, `protected`, default) kiểm soát quyền truy cập và hiển thị của lớp, trường, phương thức.',
+          '**Getters (Phương thức truy cập):** Phương thức public dùng để đọc giá trị của trường private một cách an toàn.',
+          '**Setters (Phương thức thay đổi):** Phương thức public dùng để ghi đè/cập nhật giá trị trường private kèm logic xác thực.'
+        ]
+      },
+      {
+        title: 'Cơ chế Khởi tạo & Từ khóa (Instantiation & Keywords)',
+        items: [
+          '**Constructor (Hàm khởi tạo):** Phương thức đặc biệt cùng tên lớp, không có kiểu trả về, tự động chạy khi dùng `new` để tạo đối tượng.',
+          '**Default Constructor (Hàm khởi tạo mặc định):** Hàm khởi tạo không đối số tự động cung cấp bởi Java nếu lớp không khai báo constructor nào.',
+          '**Parameterized Constructor (Hàm khởi tạo có tham số):** Hàm khởi tạo chấp nhận tham số đầu vào để gán giá trị khởi điểm cho các trường.',
+          '**Constructor Overloading (Nạp chồng hàm khởi tạo):** Khả năng khai báo nhiều constructor trong cùng một lớp bằng cách thay đổi số lượng hoặc kiểu tham số.',
+          '**this keyword (Từ khóa this):** Tham chiếu trỏ đến đối tượng hiện tại, dùng để phân biệt biến instance và tham số trùng tên.',
+          '**Modularity (Tính mô-đun):** Chia nhỏ hệ thống lớn thành các lớp/đối tượng độc lập giúp dễ quản lý và bảo trì.',
+          '**Reusability (Tính tái sử dụng):** Khả năng sử dụng lại mã nguồn của lớp ở nhiều nơi mà không cần viết lại.',
+          '**Maintainability (Khả năng bảo trì):** Đặc điểm hệ thống dễ gỡ lỗi, cập nhật và mở rộng nhờ cấu trúc rõ ràng.'
+        ]
+      }
+    ]
+  },
+  {
     id: 'oop_review_quizzes',
-    title: '6. Câu hỏi Ôn tập & Bài tập Luyện tập (OOP Review & Quizzes)',
+    title: '8. Câu hỏi Ôn tập & Bài tập Luyện tập (OOP Review & Quizzes)',
     type: 'Luyện tập & Tự kiểm tra',
     description: 'Tổng hợp 10 câu hỏi đố nhanh để tự kiểm tra kiến thức về các khái niệm OOP cốt lõi và 5 câu hỏi tự luận mở rộng tư duy thiết kế hệ thống.',
     interviewSignals: 'Tự đánh giá độ hiểu bài trước khi đi phỏng vấn. Tăng tốc phản xạ lập trình hướng đối tượng.',
@@ -280,7 +364,7 @@ public class Main {
   },
   {
     id: 'oop_interview_faqs',
-    title: '7. Câu hỏi Phỏng vấn thường gặp (OOP Interview FAQs)',
+    title: '9. Câu hỏi Phỏng vấn thường gặp (OOP Interview FAQs)',
     type: 'Kinh nghiệm Phỏng vấn',
     description: 'Tổng hợp 8 câu hỏi phỏng vấn kinh điển về OOP thường xuất hiện trong các buổi phỏng vấn kỹ thuật từ cấp độ Junior đến Senior kèm câu trả lời chuẩn xác nhất.',
     interviewSignals: 'Bộ câu hỏi bắt buộc phải vượt qua trong phần Phỏng vấn lý thuyết Core Java & Tư duy Thiết kế.',
